@@ -1,0 +1,21 @@
+{
+  "item.block_router.item_routing_pattern": "Pattern",
+  "item.block_router.item_teleportation_slot": "Wireless Transfer Card",
+  "item.block_router.item_processing_upgrade_low": "Low processing upgrade",
+  "item.block_router.item_processing_upgrade_medium": "Medium processing upgrade",
+  "item.block_router.item_processing_upgrade_high": "High processing upgrade",
+  "item.block_router.item_processing_upgrade_extra": "Extra processing upgrade",
+  "item.block_router.item_quantity_upgrade": "Quantity upgrade",
+  "item.block_router.item_amethyst_gear": "Copper Amethyst gear",
+  "item.block_router.item_conductive_amethyst_shard": "Conductive Amethyst Shard",
+  "item.block_router.item_ender_amethyst_shard": "Ender Amethyst Shard",
+  "block.block_router.block_router": "The Router",
+  "block.block_router.block_ender_router": "The Ender Router",
+  "block.block_router.block_machine_block": "Machine Block",
+  "block.block_router.block_pattern_encoder": "Pattern Encoder",
+  "block.block_router.block_trading_station": "Trading Station",
+  "block.block_router.block_item_buffer": "Items Buffer",
+  "block.block_router.block_scatter": "Scatter",
+  "block.block_router.block_retriever": "Retriever",
+  "block.block_router.block_ender_amethyst": "Ender Amethyst Block"
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#H#",
+    "CBG",
+    "#H#"
+  ],
+  "key": {
+    "B": {
+      "item": "block_router:block_machine_block"
+    },
+    "G": {
+      "item": "block_router:item_amethyst_gear"
+    },
+    "C": {
+      "item": "block_router:item_conductive_amethyst_shard"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "#": {
+      "item": "minecraft:black_concrete"
+    }
+  },
+  "result": {
+    "item": "block_router:block_item_buffer"
+  }
+}

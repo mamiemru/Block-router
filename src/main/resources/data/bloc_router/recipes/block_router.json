@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "sBr",
+    "G#G"
+  ],
+  "key": {
+    "G": {
+      "item": "block_router:item_amethyst_gear"
+    },
+    "B": {
+      "item": "block_router:block_machine_block"
+    },
+    "s": {
+      "item": "block_router:block_scatter"
+    },
+    "r": {
+      "item": "block_router:block_retriever"
+    },
+    "P": {
+      "item": "block_router:item_conductive_amethyst_shard"
+    },
+    "#": {
+      "item": "minecraft:black_concrete"
+    }
+  },
+  "result": {
+    "item": "block_router:block_router"
+  }
+}

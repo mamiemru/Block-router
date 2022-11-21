@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "block_router:block/block_ender_amethyst"
+  }
+}

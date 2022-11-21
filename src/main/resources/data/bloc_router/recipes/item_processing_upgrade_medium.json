@@ -1,0 +1,14 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "block_router:item_processing_upgrade_low"
+    },
+    {
+      "item": "block_router:item_processing_upgrade_low"
+    }
+  ],
+  "result": {
+    "item": "block_router:item_processing_upgrade_medium"
+  }
+}

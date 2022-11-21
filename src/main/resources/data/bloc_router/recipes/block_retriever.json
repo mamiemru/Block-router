@@ -1,0 +1,11 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "block_router:block_scatter"
+    }
+  ],
+  "result": {
+    "item": "block_router:block_retriever"
+  }
+}

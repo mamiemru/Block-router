@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "block_router:block/block_machine_block",
+    "north": "block_router:block/block_scatter_side",
+    "south": "block_router:block/block_scatter_side",
+    "east": "block_router:block/block_scatter_side",
+    "west": "block_router:block/block_scatter_side",
+    "up": "block_router:block/block_router_top",
+    "down": "block_router:block/block_machine_block"
+  }
+}

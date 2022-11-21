@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "APA",
+    "#B#",
+    "###"
+  ],
+  "key": {
+    "B": {
+      "item": "block_router:block_machine_block"
+    },
+    "P": {
+      "item": "block_router:item_routing_pattern"
+    },
+    "A": {
+      "item": "block_router:item_conductive_amethyst_shard"
+    },
+    "#": {
+      "item": "minecraft:black_concrete"
+    }
+  },
+  "result": {
+    "item": "block_router:block_pattern_encoder"
+  }
+}

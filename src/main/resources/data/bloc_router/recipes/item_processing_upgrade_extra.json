@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ACA",
+    "AAA"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "A": {
+      "item": "block_router:item_processing_upgrade_high"
+    }
+  },
+  "result": {
+    "item": "block_router:item_processing_upgrade_extra"
+  }
+}

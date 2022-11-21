@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "block_router:item_amethyst_gear"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "block_router:item_ender_amethyst_shard"
+    }
+  ],
+  "result": {
+    "item": "block_router:item_processing_upgrade_low"
+  }
+}
