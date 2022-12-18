@@ -1,6 +1,5 @@
 package fr.mamiemru.blocrouter.gui.menu.slot;
 
-import fr.mamiemru.blocrouter.entities.custom.RouterEntity;
 import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;

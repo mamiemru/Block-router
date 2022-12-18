@@ -9,8 +9,12 @@ public class ContainerListData implements ContainerData {
     public int[] array;
 
     public ContainerListData(int size) {
+        this(size, 0);
+    }
+
+    public ContainerListData(int size, int n) {
         this.array = new int[size];
-        Arrays.fill(this.array, 0);
+        Arrays.fill(this.array, n);
     }
 
     public ContainerListData(int[] array) {

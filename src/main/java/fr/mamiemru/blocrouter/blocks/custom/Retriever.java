@@ -1,6 +1,7 @@
 package fr.mamiemru.blocrouter.blocks.custom;
 
 import fr.mamiemru.blocrouter.blocks.BaseFacingBlock;
+import fr.mamiemru.blocrouter.blocks.BaseSwitchableFacingBlock;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.entities.custom.RetrieverEntity;
 import net.minecraft.core.BlockPos;
@@ -25,20 +26,11 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class Retriever extends BaseFacingBlock {
-
-    public static final BooleanProperty ENABLED = BooleanProperty.create("enabled");
+public class Retriever extends BaseSwitchableFacingBlock {
 
     public Retriever() {
         super(Properties.of(Material.METAL));
     }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> blockStateBuilder) {
-        super.createBlockStateDefinition(blockStateBuilder);
-        blockStateBuilder.add(ENABLED);
-    }
-
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
@@ -84,5 +76,10 @@ public class Retriever extends BaseFacingBlock {
         if (flag != blockState.getValue(ENABLED)) {
             level.setBlock(pos, blockState.setValue(ENABLED, Boolean.valueOf(flag)), 4);
         }
+    }
+
+    @Override
+    protected boolean isEntityInstanceOf(Object o) {
+        return false;
     }
 }

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "GBG",
+    "SPS"
+  ],
+  "key": {
+    "B": {
+      "item": "block_router:block_ender_router"
+    },
+    "P": {
+      "item": "block_router:block_ender_amethyst"
+    },
+    "S": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "block_router:item_amethyst_gear"
+    }
+  },
+  "result": {
+    "item": "block_router:block_slot_router"
+  }
+}

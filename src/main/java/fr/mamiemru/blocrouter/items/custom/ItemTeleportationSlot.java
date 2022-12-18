@@ -1,12 +1,9 @@
 package fr.mamiemru.blocrouter.items.custom;
 
 import fr.mamiemru.blocrouter.BlocRouter;
-import fr.mamiemru.blocrouter.util.Pattern;
-import fr.mamiemru.blocrouter.util.PatternUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -15,16 +12,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 public class ItemTeleportationSlot extends Item{
 
@@ -34,7 +28,6 @@ public class ItemTeleportationSlot extends Item{
 
     public ItemTeleportationSlot() {
         super(new Properties().tab(BlocRouter.RouterCreativeTab));
-
     }
 
     @Override
@@ -54,13 +47,25 @@ public class ItemTeleportationSlot extends Item{
             HitResult block = entity.pick(20.0D, 0.0F, false);
             BlockPos blockpos = ((BlockHitResult)block).getBlockPos();
             Minecraft.getInstance().player.displayClientMessage(Component.literal(blockpos.toShortString()), true);
-            CompoundTag compoundTag = new CompoundTag();
-            compoundTag.putInt(getNbtCoordinateX(), blockpos.getX());
-            compoundTag.putInt(getNbtCoordinateY(), blockpos.getY());
-            compoundTag.putInt(getNbtCoordinateZ(), blockpos.getZ());
-            is.setTag(compoundTag);
+            is.setTag(encodeCoords(blockpos));
         }
         return super.use(level, player, pUseHand);
+    }
+
+    public static CompoundTag encodeCoords(BlockPos blockPos) {
+        CompoundTag compoundTag = new CompoundTag();
+        compoundTag.putInt(getNbtCoordinateX(), blockPos.getX());
+        compoundTag.putInt(getNbtCoordinateY(), blockPos.getY());
+        compoundTag.putInt(getNbtCoordinateZ(), blockPos.getZ());
+        return compoundTag;
+    }
+
+    public static BlockPos decodeCoords(CompoundTag compoundTag) {
+        return new BlockPos(
+            compoundTag.getInt(getNbtCoordinateX()),
+            compoundTag.getInt(getNbtCoordinateY()),
+            compoundTag.getInt(getNbtCoordinateZ())
+        );
     }
 
     @Override
@@ -71,17 +76,17 @@ public class ItemTeleportationSlot extends Item{
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level level, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (pStack.hasTag()) {
-            String coordinates = "x="+getCoordinateX(pStack)+" y="+getCoordinateY(pStack)+" z="+getCoordinateZ(pStack);
-            pTooltipComponents.add(Component.literal(coordinates));
+            int x = getCoordinateX(pStack);
+            int y = getCoordinateY(pStack);
+            int z = getCoordinateZ(pStack);
+            pTooltipComponents.add(Component.literal("x:"+x+" y:"+y+" z:"+z));
+            pTooltipComponents.add(Component.literal("Target:"+ level.getBlockState(new BlockPos(x,y,z)).getBlock().getDescriptionId()));
         }
-        pTooltipComponents.add(Component.literal("Disabled.."));
 
         super.appendHoverText(pStack, level, pTooltipComponents, pIsAdvanced);
     }
 
-    public static final String getNbtCoordinateX() {
-        return BlocRouter.MOD_ID+NBT_COORDINATE_X;
-    }
+    public static final String getNbtCoordinateX() {return BlocRouter.MOD_ID+NBT_COORDINATE_X; }
     public static final String getNbtCoordinateY() {
         return BlocRouter.MOD_ID+NBT_COORDINATE_Y;
     }
@@ -107,5 +112,9 @@ public class ItemTeleportationSlot extends Item{
                 getCoordinateY(itemStack),
                 getCoordinateZ(itemStack)
         );
+    }
+
+    public static ItemStack getTeleportationCardOrNull(ItemStack is) {
+        return (is != null && is.getItem() instanceof ItemTeleportationSlot && is.hasTag() && is.getCount() == 1)? is : null;
     }
 }

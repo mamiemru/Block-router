@@ -1,0 +1,11 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "block_router:block_transfer_pattern_encoder"
+    }
+  ],
+  "result": {
+    "item": "block_router:block_pattern_encoder"
+  }
+}

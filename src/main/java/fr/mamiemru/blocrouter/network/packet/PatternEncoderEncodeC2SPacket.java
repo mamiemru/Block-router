@@ -1,9 +1,7 @@
 package fr.mamiemru.blocrouter.network.packet;
 
-import fr.mamiemru.blocrouter.entities.custom.PatternEncoderEntity;
-import fr.mamiemru.blocrouter.gui.menu.PatternEncoderMenu;
+import fr.mamiemru.blocrouter.gui.menu.BaseContainerMenuPatternEncoder;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraftforge.network.NetworkEvent;
@@ -27,10 +25,9 @@ public class PatternEncoderEncodeC2SPacket {
         context.enqueueWork(() -> {
             ServerPlayer serverPlayer = context.getSender();
             AbstractContainerMenu containerMenu = serverPlayer.containerMenu;
-
-            if (containerMenu instanceof PatternEncoderMenu) {
-                PatternEncoderMenu container = (PatternEncoderMenu) containerMenu;
-                ((PatternEncoderEntity) container.getEntity()).encodePattern();
+            System.out.println(containerMenu);
+            if (containerMenu instanceof BaseContainerMenuPatternEncoder container) {
+                container.getEntity().encodePattern();
             }
         });
     }

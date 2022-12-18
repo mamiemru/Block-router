@@ -1,9 +1,7 @@
 package fr.mamiemru.blocrouter.network.packet;
 
-import fr.mamiemru.blocrouter.entities.custom.BaseEntityEnergy;
-import fr.mamiemru.blocrouter.entities.custom.RouterEntity;
-import fr.mamiemru.blocrouter.gui.menu.EnergyAbstractAbstractContainerMenu;
-import fr.mamiemru.blocrouter.gui.menu.RouterMenu;
+import fr.mamiemru.blocrouter.entities.BaseEntityEnergy;
+import fr.mamiemru.blocrouter.gui.menu.BaseContainerMenuEnergy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -36,7 +34,7 @@ public class EnergySyncS2CPacket {
             if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof BaseEntityEnergy blockEntity) {
                 blockEntity.setEnergyLevel(energy);
 
-                if(Minecraft.getInstance().player.containerMenu instanceof EnergyAbstractAbstractContainerMenu menu &&
+                if(Minecraft.getInstance().player.containerMenu instanceof BaseContainerMenuEnergy menu &&
                         menu.getEntity().getBlockPos().equals(pos)) {
                     blockEntity.setEnergyLevel(energy);
                 }

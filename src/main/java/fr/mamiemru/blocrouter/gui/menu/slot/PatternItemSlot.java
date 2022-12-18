@@ -7,8 +7,8 @@ public class PatternItemSlot extends SlotItemHandler {
 
     private final int index;
 
-    public PatternItemSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
-        super(itemHandler, index, xPosition, yPosition);
+    public PatternItemSlot(IItemHandler container, int index, int xPosition, int yPosition) {
+        super(container, index, xPosition, yPosition);
         this.index = index;
     }
 }

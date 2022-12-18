@@ -1,28 +1,23 @@
 package fr.mamiemru.blocrouter.items.custom;
 
 import fr.mamiemru.blocrouter.BlocRouter;
-import fr.mamiemru.blocrouter.entities.custom.PatternEncoderEntity;
-import fr.mamiemru.blocrouter.util.Pattern;
-import fr.mamiemru.blocrouter.util.PatternRow;
-import fr.mamiemru.blocrouter.util.PatternUtil;
-import net.minecraft.client.Minecraft;
+import fr.mamiemru.blocrouter.entities.custom.patternEncoder.PatternEncoderEntity;
+import fr.mamiemru.blocrouter.items.ItemsRegistry;
+import fr.mamiemru.blocrouter.util.patterns.NormalRoutingPattern;
+import fr.mamiemru.blocrouter.util.patterns.Pattern;
+import fr.mamiemru.blocrouter.util.patterns.PatternRow;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class ItemRoutingPattern extends Item {
 
@@ -33,19 +28,27 @@ public class ItemRoutingPattern extends Item {
 
     }
 
-    public static void encodePatternTag(ItemStack is, ListTag ingredients) {
-        CompoundTag nbtData = new CompoundTag();
-        int ingredientsIndex = 0;
-        for (Tag tag : ingredients) {
-            nbtData.put(String.valueOf(ingredientsIndex++), tag);
-        }
-        nbtData.putString(ItemRoutingPattern.getNbtUuid(), UUID.randomUUID().toString());
-        is.setTag(nbtData);
-    }
-
     public static Pattern decodePatternTag(@NotNull ItemStack is) {
         if (is.hasTag()) {
-            return PatternUtil.decodePatternIngredient(is.getTag());
+            CompoundTag tag = is.getTag();
+            Tag uuid = tag.get(ItemRoutingPattern.getNbtUuid());
+            List<PatternRow> list = new ArrayList<>();
+            int index = 0;
+            for(int i = 0; i < PatternEncoderEntity.NUMBER_OF_INGREDIENTS_INPUT_SLOTS; ++i) {
+                CompoundTag nbt = tag.getCompound(String.valueOf(i));
+                if (!nbt.isEmpty()) {
+                    int slot = nbt.getInt("index");
+                    int side = nbt.getInt("side");
+                    ItemStack stack = ItemStack.of(nbt);
+                    stack = stack.isEmpty() ? ItemStack.EMPTY : stack;
+                    if (!stack.isEmpty()) {
+                        list.add(index++, new PatternRow(slot, stack, side));
+                    }
+                }
+            }
+            return new NormalRoutingPattern(
+                    list, uuid.getAsString()
+            );
         }
         return null;
     }
@@ -58,8 +61,9 @@ public class ItemRoutingPattern extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand pUseHand) {
         ItemStack is = player.getItemInHand(pUseHand);
-        if (is.hasTag() && player.isCrouching()) {
+        if (player.isCrouching()) {
             is.setTag(new CompoundTag());
+            player.setItemInHand(pUseHand, new ItemStack(ItemsRegistry.ITEM_ROUTING_PATTERN.get(), 1));
         }
         return super.use(level, player, pUseHand);
     }
@@ -67,24 +71,6 @@ public class ItemRoutingPattern extends Item {
     @Override
     public boolean isFoil(ItemStack stack) {
         return stack.hasTag();
-    }
-
-    @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level level, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (pStack.hasTag()) {
-            pTooltipComponents.add(Component.literal("Ingredients"));
-            Pattern pattern = decodePatternTag(pStack);
-            for (PatternRow row : pattern.getRows()) {
-                MutableComponent str = Component.empty();
-                str.append("Side ");
-                str.append(PatternUtil.axeIdToString(row.axe));
-                str.append(" ");
-                str.append(row.is.getItem()+" x"+row.is.getCount());
-                pTooltipComponents.add(str);
-            }
-        }
-
-        super.appendHoverText(pStack, level, pTooltipComponents, pIsAdvanced);
     }
 
     public static final String getNbtUuid() {

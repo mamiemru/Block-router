@@ -1,6 +1,6 @@
 package fr.mamiemru.blocrouter.entities.custom;
 
-import fr.mamiemru.blocrouter.blocks.custom.Router;
+import fr.mamiemru.blocrouter.entities.BaseEntityWithMenuProvider;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

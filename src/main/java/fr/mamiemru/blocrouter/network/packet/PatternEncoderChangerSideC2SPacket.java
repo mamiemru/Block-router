@@ -1,17 +1,10 @@
 package fr.mamiemru.blocrouter.network.packet;
 
-import fr.mamiemru.blocrouter.entities.custom.PatternEncoderEntity;
-import fr.mamiemru.blocrouter.gui.menu.AbstractAbstractContainerMenu;
-import fr.mamiemru.blocrouter.gui.menu.PatternEncoderMenu;
-import fr.mamiemru.blocrouter.network.ModNetworking;
-import fr.mamiemru.blocrouter.util.PatternUtil;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.core.BlockPos;
+import fr.mamiemru.blocrouter.entities.custom.patternEncoder.PatternEncoderEntity;
+import fr.mamiemru.blocrouter.gui.menu.menus.patternEncoder.PatternEncoderMenu;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;

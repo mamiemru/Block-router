@@ -1,11 +1,12 @@
 package fr.mamiemru.blocrouter.entities.custom;
 
-import fr.mamiemru.blocrouter.blocks.custom.Router;
+import fr.mamiemru.blocrouter.blocks.custom.routers.Router;
+import fr.mamiemru.blocrouter.entities.BaseEntityWithMenuProvider;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
-import fr.mamiemru.blocrouter.gui.menu.BufferMenu;
+import fr.mamiemru.blocrouter.entities.WrappedHandler;
+import fr.mamiemru.blocrouter.gui.menu.menus.BufferMenu;
 import fr.mamiemru.blocrouter.network.ModNetworking;
 import fr.mamiemru.blocrouter.network.packet.BufferRendererS2CPacket;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -16,9 +17,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -168,7 +167,7 @@ public class BufferEntity extends BaseEntityWithMenuProvider {
         toggleInsert = nbt.getInt("buffer_entity.toggleInsert");
         itemStackHandler.deserializeNBT(nbt.getCompound("inventory"));
         selectedItemStack = ItemStack.of(nbt.getCompound("selectedItemStack"));
-        if (!level.isClientSide()) {
+        if (getLevel() != null && !getLevel().isClientSide()) {
             ModNetworking.sendToClients(new BufferRendererS2CPacket(getBlockPos(), selectedItemStack));
         }
     }

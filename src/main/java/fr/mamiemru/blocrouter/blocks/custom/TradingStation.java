@@ -2,13 +2,8 @@ package fr.mamiemru.blocrouter.blocks.custom;
 
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.entities.custom.TradingStationEntity;
-import fr.mamiemru.blocrouter.util.Pattern;
-import fr.mamiemru.blocrouter.util.PatternRow;
-import fr.mamiemru.blocrouter.util.PatternUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +19,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

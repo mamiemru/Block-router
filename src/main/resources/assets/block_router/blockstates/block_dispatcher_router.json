@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "block_router:block/block_dispatcher_router"
+    }
+  }
+}

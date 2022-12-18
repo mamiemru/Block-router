@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "#B#",
+    "G#G"
+  ],
+  "key": {
+    "B": {
+      "item": "block_router:block_ender_scatter"
+    },
+    "G": {
+      "item": "block_router:item_amethyst_gear"
+    },
+    "#": {
+      "item": "minecraft:redstone_block"
+    },
+    "P": {
+      "item": "minecraft:lightning_rod"
+    }
+  },
+  "result": {
+    "item": "block_router:block_ender_energy_scatter"
+  }
+}

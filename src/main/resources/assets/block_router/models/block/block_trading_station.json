@@ -1,12 +1,8 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/cube_column",
   "textures": {
     "particle": "block_router:block/block_machine_block",
-    "north": "block_router:block/block_trading_station_side",
-    "south": "block_router:block/block_trading_station_side",
-    "east": "block_router:block/block_trading_station_side",
-    "west": "block_router:block/block_trading_station_side",
-    "up": "block_router:block/block_trading_station_top",
-    "down": "block_router:block/block_machine_block"
+    "side": "block_router:block/block_trading_station_side",
+    "end": "block_router:block/block_trading_station_top"
   }
 }

@@ -13,7 +13,7 @@
       "item": "block_router:item_routing_pattern"
     },
     "A": {
-      "item": "block_router:item_conductive_amethyst_shard"
+      "item": "minecraft:amethyst_shard"
     },
     "#": {
       "item": "minecraft:black_concrete"

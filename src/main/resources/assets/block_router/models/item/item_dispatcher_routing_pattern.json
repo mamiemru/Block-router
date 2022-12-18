@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "block_router:item/item_routing_pattern",
+    "layer1": "block_router:item/item_dispatcher_routing_pattern"
+  }
+}

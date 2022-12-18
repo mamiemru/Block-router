@@ -39,6 +39,12 @@ public class ModNetworking {
                 .consumerMainThread(PatternEncoderChangerSideC2SPacket::handle)
                 .add();
 
+        net.messageBuilder(PatternEncoderChangerSlotC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PatternEncoderChangerSlotC2SPacket::new)
+                .encoder(PatternEncoderChangerSlotC2SPacket::toBytes)
+                .consumerMainThread(PatternEncoderChangerSlotC2SPacket::handle)
+                .add();
+
         net.messageBuilder(BufferSetItemThresholdC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(BufferSetItemThresholdC2SPacket::new)
                 .encoder(BufferSetItemThresholdC2SPacket::toBytes)
@@ -57,6 +63,47 @@ public class ModNetworking {
                 .consumerMainThread(EnergySyncS2CPacket::handle)
                 .add();
 
+        net.messageBuilder(TransferPatternEncoderEncodeWhiteBlackListC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TransferPatternEncoderEncodeWhiteBlackListC2SPacket::new)
+                .encoder(TransferPatternEncoderEncodeWhiteBlackListC2SPacket::toBytes)
+                .consumerMainThread(TransferPatternEncoderEncodeWhiteBlackListC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(TransferPatternEncoderEncodeIEC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TransferPatternEncoderEncodeIEC2SPacket::new)
+                .encoder(TransferPatternEncoderEncodeIEC2SPacket::toBytes)
+                .consumerMainThread(TransferPatternEncoderEncodeIEC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(SwitchableMachineStateC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SwitchableMachineStateC2SPacket::new)
+                .encoder(SwitchableMachineStateC2SPacket::toBytes)
+                .consumerMainThread(SwitchableMachineStateC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(DispatcherPatternEncoderChangerVectorTypeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(DispatcherPatternEncoderChangerVectorTypeC2SPacket::new)
+                .encoder(DispatcherPatternEncoderChangerVectorTypeC2SPacket::toBytes)
+                .consumerMainThread(DispatcherPatternEncoderChangerVectorTypeC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(SortableModeMachineStateC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SortableModeMachineStateC2SPacket::new)
+                .encoder(SortableModeMachineStateC2SPacket::toBytes)
+                .consumerMainThread(SortableModeMachineStateC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(VacuumRouterChangerDropHeightC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(VacuumRouterChangerDropHeightC2SPacket::new)
+                .encoder(VacuumRouterChangerDropHeightC2SPacket::toBytes)
+                .consumerMainThread(VacuumRouterChangerDropHeightC2SPacket::handle)
+                .add();
+
+    net.messageBuilder(PatternEncoderChangeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PatternEncoderChangeC2SPacket::new)
+                .encoder(PatternEncoderChangeC2SPacket::toBytes)
+                .consumerMainThread(PatternEncoderChangeC2SPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

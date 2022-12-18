@@ -29,9 +29,7 @@ public class EnergyInfoArea extends InfoArea {
         this.energy = energy;
     }
 
-    public List<Component> getTooltips() {
-        return List.of(Component.literal(energy.getEnergyStored()+"/"+energy.getMaxEnergyStored()+" FE"));
-    }
+    public Component getTooltips() { return Component.literal(energy.getEnergyStored()+"/"+energy.getMaxEnergyStored()+" FE");}
 
     @Override
     public void draw(PoseStack transform) {

@@ -1,8 +1,10 @@
 package fr.mamiemru.blocrouter.entities.custom;
 
 import fr.mamiemru.blocrouter.blocks.custom.Retriever;
+import fr.mamiemru.blocrouter.entities.BaseEntityEnergy;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
-import fr.mamiemru.blocrouter.gui.menu.RetrieverMenu;
+import fr.mamiemru.blocrouter.entities.WrappedHandler;
+import fr.mamiemru.blocrouter.gui.menu.menus.RetrieverMenu;
 import fr.mamiemru.blocrouter.items.custom.ItemProcessingUpgrade;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -210,15 +212,15 @@ public class RetrieverEntity extends BaseEntityEnergy {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, RetrieverEntity pEntity) {
-        if (level.isClientSide() || !state.getValue(Retriever.ENABLED)) {
+        if (level.isClientSide() || !pEntity.isEnabled()) {
             return;
         }
 
         if (pEntity.hasEnoughEnergy()) {
-            pEntity.useEnergy();
             if (pEntity.processMaxTickWithUpgrade() <= pEntity.processTick) {
                 BlockEntity block_entity_reference = level.getBlockEntity(pos.above());
                 forEveryMachines(pEntity, block_entity_reference);
+                pEntity.useEnergy();
                 pEntity.processTick = 0;
             } else {
                 ++pEntity.processTick;

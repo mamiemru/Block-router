@@ -14,15 +14,17 @@ public abstract class BaseFacingBlock extends BaseEntityBlock {
         super(pProperties);
     }
 
+    protected abstract boolean isEntityInstanceOf(Object o);
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> blockStateBuilder) {
+        super.createBlockStateDefinition(blockStateBuilder);
         blockStateBuilder.add(FACING);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+        return super.getStateForPlacement(pContext).setValue(FACING, pContext.getHorizontalDirection().getOpposite());
     }
 
     @Override
