@@ -26,6 +26,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
+import java.awt.*;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(BlocRouter.MOD_ID)
 public class BlocRouter
@@ -81,6 +83,7 @@ public class BlocRouter
             MenuScreens.register(MenuTypes.ENDER_SCATTER_MENU.get(), EnderScatterScreen::new);
             MenuScreens.register(MenuTypes.ENDER_RETRIEVER_MENU.get(), EnderRetrieverScreen::new);
             MenuScreens.register(MenuTypes.ENDER_ENERGY_SCATTER_MENU.get(), EnderEnergyScatterScreen::new);
+            MenuScreens.register(MenuTypes.ITEM_FILTER_MENU.get(), ItemFilterScreen::new);
         }
     }
 }

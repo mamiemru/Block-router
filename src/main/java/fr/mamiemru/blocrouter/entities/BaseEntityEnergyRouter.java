@@ -1,10 +1,7 @@
 package fr.mamiemru.blocrouter.entities;
 
 import fr.mamiemru.blocrouter.blocks.BaseFacingBlock;
-import fr.mamiemru.blocrouter.items.custom.ItemProcessingUpgrade;
-import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
-import fr.mamiemru.blocrouter.items.custom.ItemSlotRoutingPattern;
-import fr.mamiemru.blocrouter.items.custom.ItemVacuumRoutingPattern;
+import fr.mamiemru.blocrouter.items.custom.*;
 import fr.mamiemru.blocrouter.util.patterns.Pattern;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -44,6 +41,7 @@ public abstract class BaseEntityEnergyRouter extends BaseEntityEnergy {
     protected abstract int getSlotOutputSlot0();
     protected abstract int getSlotOutputSlotN();
     protected abstract boolean isPatternRight(Item item);
+    protected int getSlotOutputTeleportationCard() { return -1; }
 
     protected boolean checkIsItemValid(int slot, @NotNull ItemStack stack) {
         if (isPatternRight(stack.getItem())) {
@@ -54,6 +52,8 @@ public abstract class BaseEntityEnergyRouter extends BaseEntityEnergy {
             return true;
         } else if (getSlotInputSlot0() <= slot && slot <= getSlotInputSlotN()) {
             return true;
+        } else if (stack.getItem() instanceof ItemTeleportationSlot) {
+            return slot == getSlotOutputTeleportationCard();
         }
         return false;
     }
@@ -73,7 +73,6 @@ public abstract class BaseEntityEnergyRouter extends BaseEntityEnergy {
 
     private void loadPatterns() {
         if (getLevel() != null && !getLevel().isClientSide()) {
-            System.out.println("Reload patterns");
             for (int patternSlot = 0; patternSlot < getNumberOfPatternSlots(); ++patternSlot) {
                 ItemStack is = itemStackHandler.getStackInSlot(getSlotPatternSlot0() + patternSlot);
                 if (is != null && !is.isEmpty()) {
@@ -234,6 +233,8 @@ public abstract class BaseEntityEnergyRouter extends BaseEntityEnergy {
             for (Pattern pattern : pEntity.patterns) {
                 forPattern(pEntity, pattern);
             }
+        } else {
+            pEntity.loadPatterns();
         }
 
         pEntity.processTick = 0;

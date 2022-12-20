@@ -1,5 +1,6 @@
 package fr.mamiemru.blocrouter.entities.custom.patternEncoder;
 
+import fr.mamiemru.blocrouter.blocks.custom.statesProperties.VectorTypeMode;
 import fr.mamiemru.blocrouter.entities.BaseEntityPatternEncoder;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.gui.menu.menus.patternEncoder.DispatcherPatternEncoderMenu;
@@ -20,28 +21,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class DispatcherPatternEncoderEntity extends BaseEntityPatternEncoder {
 
-    public enum VectorType {
-        HORIZONTAL,
-        VERTICAL,
-        DEPTH;
-
-        public static VectorType fromIndex(int index) {
-            return switch (index) {
-                case 1 -> VERTICAL;
-                case 2 -> DEPTH;
-                default -> HORIZONTAL;
-            };
-        }
-
-        public static int toIndex(VectorType vectorType) {
-            return switch (vectorType) {
-                case HORIZONTAL -> 0;
-                case VERTICAL -> 1;
-                case DEPTH -> 2;
-            };
-        }
-    }
-
     public static final int SLOT_INPUT_SLOT_PATTERN = 0;
     public static final int SLOT_INPUT_TELEPORTATION_CARD = 1;
     public static final int SLOT_INPUT_MIN = 2;
@@ -49,10 +28,10 @@ public class DispatcherPatternEncoderEntity extends BaseEntityPatternEncoder {
     public static final int NUMBER_OF_INGREDIENTS_INPUT_SLOTS = 81;
     public static final int NUMBER_OF_SLOTS = 84;
 
-    private VectorType vectorType = VectorType.HORIZONTAL;
+    private VectorTypeMode vectorType = VectorTypeMode.HORIZONTAL;
 
-    protected int containerDataGetter(int index) {return VectorType.toIndex(DispatcherPatternEncoderEntity.this.vectorType);}
-    protected void containerDataSetter(int index, int value) {DispatcherPatternEncoderEntity.this.vectorType = VectorType.fromIndex(value);}
+    protected int containerDataGetter(int index) {return VectorTypeMode.toIndex(DispatcherPatternEncoderEntity.this.vectorType);}
+    protected void containerDataSetter(int index, int value) {DispatcherPatternEncoderEntity.this.vectorType = VectorTypeMode.fromIndex(value);}
     protected int containerDataSize() {
         return 1;
     }

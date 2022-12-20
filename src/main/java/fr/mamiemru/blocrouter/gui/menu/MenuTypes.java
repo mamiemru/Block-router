@@ -21,9 +21,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class MenuTypes {
 
-    public static Player getClientPlayer() {
-        return Minecraft.getInstance().player;
-    }
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, BlocRouter.MOD_ID);
 
@@ -63,6 +60,10 @@ public class MenuTypes {
             registerMenuType(EnderRetrieverMenu::new, "ender_retriever_menu");
     public static final RegistryObject<MenuType<EnderEnergyScatterMenu>> ENDER_ENERGY_SCATTER_MENU =
             registerMenuType(EnderEnergyScatterMenu::new, "ender_energy_scatter_menu");
+
+    public static final RegistryObject<MenuType<ItemFilterMenu>> ITEM_FILTER_MENU =
+            MENUS.register("item_filter_menu", () -> IForgeMenuType.create(((windowId, inv, data) -> new ItemFilterMenu(windowId, inv, Minecraft.getInstance().player))));
+
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
                                                                                                   String name) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

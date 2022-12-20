@@ -1,5 +1,6 @@
 package fr.mamiemru.blocrouter.util.patterns;
 
+import fr.mamiemru.blocrouter.blocks.custom.statesProperties.VectorTypeMode;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.DispatcherPatternEncoderEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
@@ -24,10 +25,10 @@ public class DispatcherPattern extends Pattern {
     }
 
     private BlockPos reference;
-    private DispatcherPatternEncoderEntity.VectorType vectorType;
+    private VectorTypeMode vectorType;
     private List<DispatcherPatternIngredient> ingredientList;
 
-    public DispatcherPattern(BlockPos reference, DispatcherPatternEncoderEntity.VectorType vectorType, List<DispatcherPatternIngredient> ingredientList) {
+    public DispatcherPattern(BlockPos reference, VectorTypeMode vectorType, List<DispatcherPatternIngredient> ingredientList) {
         super(null);
         this.reference = reference;
         this.vectorType = vectorType;
@@ -38,7 +39,7 @@ public class DispatcherPattern extends Pattern {
         return reference;
     }
 
-    public DispatcherPatternEncoderEntity.VectorType getVectorType() {
+    public VectorTypeMode getVectorType() {
         return vectorType;
     }
 

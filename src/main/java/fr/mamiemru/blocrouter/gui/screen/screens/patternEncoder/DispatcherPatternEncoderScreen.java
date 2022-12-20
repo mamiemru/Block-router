@@ -3,6 +3,7 @@ package fr.mamiemru.blocrouter.gui.screen.screens.patternEncoder;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import fr.mamiemru.blocrouter.BlocRouter;
+import fr.mamiemru.blocrouter.blocks.custom.statesProperties.VectorTypeMode;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.DispatcherPatternEncoderEntity;
 import fr.mamiemru.blocrouter.gui.menu.menus.patternEncoder.DispatcherPatternEncoderMenu;
 import fr.mamiemru.blocrouter.gui.menu.widgets.CycleIconButton;
@@ -102,7 +103,7 @@ public class DispatcherPatternEncoderScreen extends BaseContainerScreenPatternEn
 
         else if (isMouseAboveArea(pMouseX, pMouseY, x, y,37,153,20,36)) {
             List<Component> pText = List.of(
-                    Component.literal(DispatcherPatternEncoderEntity.VectorType.fromIndex(getMenu().getVectorType()) + " perspective")
+                    Component.literal(VectorTypeMode.fromIndex(getMenu().getVectorType()) + " perspective")
             );
             renderTooltip(pPoseStack, pText, Optional.empty(), pMouseX, pMouseY);
         }

@@ -3,7 +3,7 @@ package fr.mamiemru.blocrouter.blocks.custom.statesProperties;
 import net.minecraft.util.StringRepresentable;
 
 public enum SortMode implements StringRepresentable {
-    ROUND_ROBIN("round robin"),
+    ROUND_ROBIN("round_robin"),
     PRIORITY("priority");
 
     private final String name;

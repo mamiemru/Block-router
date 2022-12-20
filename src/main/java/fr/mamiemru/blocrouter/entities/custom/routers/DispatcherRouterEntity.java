@@ -86,6 +86,9 @@ public class DispatcherRouterEntity extends BaseEntityEnergyRouter {
     }
 
     @Override
+    protected int getSlotOutputTeleportationCard() { return SLOT_OUTPUT_TELEPORTATION_CARD; }
+
+    @Override
     protected boolean isPatternRight(Item item) {
         return item instanceof ItemDispatcherRoutingPattern;
     }

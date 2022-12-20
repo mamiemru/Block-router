@@ -27,14 +27,12 @@ public class PatternEncoderScreen extends BaseContainerScreenPatternEncoder<Patt
     }
 
     private MutableComponent getSideTextButton(int index) {
-        return Component.literal(Sides.fromIndex(getMenu().getSideData(index)).toString());
+        //return Component.literal(Sides.fromIndex(getMenu().getSideData(index)).toString());
+        return Component.literal(Sides.fromIndex(index).toString());
     }
 
     private MutableComponent getTextTooltip(int index) {
-        return Component.literal("Insert the ItemStack above on " +
-                Sides.fromIndex(getMenu().getSideData(index)) +
-                " side"
-        );
+        return Component.literal("Insert the ItemStack above on " + Sides.fromIndex(/*getMenu().getSideData(*/index/*)*/) + " side");
     }
 
     @Override

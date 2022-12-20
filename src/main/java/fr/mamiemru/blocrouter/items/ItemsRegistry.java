@@ -1,8 +1,11 @@
 package fr.mamiemru.blocrouter.items;
 
 import fr.mamiemru.blocrouter.BlocRouter;
+import fr.mamiemru.blocrouter.gui.menu.menus.ItemFilterMenu;
 import fr.mamiemru.blocrouter.items.custom.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -57,6 +60,8 @@ public class ItemsRegistry {
     );
 
     // public static final RegistryObject<Item> ITEM_QUANTITY_UPGRADE = ITEMS_REGISTRY.register("item_quantity_upgrade",ItemQuantityUpgrade::new);
+
+    public static final RegistryObject<Item> ITEM_FILTER = ITEMS_REGISTRY.register("item_filter", ItemFilter::new);
 
     public static void register(IEventBus eventBus) {
         ITEMS_REGISTRY.register(eventBus);

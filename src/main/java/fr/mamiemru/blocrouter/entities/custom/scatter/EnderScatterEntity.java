@@ -54,10 +54,10 @@ public class EnderScatterEntity extends BaseEntityEnergy {
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            if (slot == SLOT_UPGRADE) {
-                return stack.getItem() instanceof ItemProcessingUpgrade;
-            } else if (SLOT_INPUT_TRANSFER_MIN <= slot && slot <= SLOT_INPUT_TRANSFER_MAX) {
-                return stack.getItem() instanceof ItemTeleportationSlot;
+            if (stack.getItem() instanceof ItemProcessingUpgrade) {
+                return slot == SLOT_UPGRADE;
+            } else if (stack.getItem() instanceof ItemTeleportationSlot) {
+                return SLOT_INPUT_TRANSFER_MIN <= slot && slot <= SLOT_INPUT_TRANSFER_MAX;
             }
             return super.isItemValid(slot, stack);
         }

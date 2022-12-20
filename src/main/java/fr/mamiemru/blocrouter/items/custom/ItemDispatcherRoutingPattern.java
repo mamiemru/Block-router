@@ -1,5 +1,6 @@
 package fr.mamiemru.blocrouter.items.custom;
 
+import fr.mamiemru.blocrouter.blocks.custom.statesProperties.VectorTypeMode;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.DispatcherPatternEncoderEntity;
 import fr.mamiemru.blocrouter.util.patterns.DispatcherPattern;
 import net.minecraft.core.BlockPos;
@@ -38,7 +39,7 @@ public class ItemDispatcherRoutingPattern extends ItemRoutingPattern {
         BlockPos blockPosInWorld = null;
         BlockPos referenceBlockPos = entity.getTeleportationCardBlockPos();
         if (referenceBlockPos != null) {
-            switch (DispatcherPatternEncoderEntity.VectorType.fromIndex(vectorType)) {
+            switch (VectorTypeMode.fromIndex(vectorType)) {
                 case HORIZONTAL -> {
                     blockPosInWorld = referenceBlockPos.offset(
                             uglyAlgo(slotVector.getZ()), 0, slotVector.getX()
@@ -92,7 +93,7 @@ public class ItemDispatcherRoutingPattern extends ItemRoutingPattern {
         List<DispatcherPattern.DispatcherPatternIngredient> dispatcherPatternIngredientList = new ArrayList<>();
         ListTag ingredients = compoundTag.getList("ingredients", Tag.TAG_COMPOUND);
         BlockPos reference = new BlockPos(compoundTag.getInt("x"), compoundTag.getInt("y"), compoundTag.getInt("z"));
-        DispatcherPatternEncoderEntity.VectorType vectorType = DispatcherPatternEncoderEntity.VectorType.fromIndex(compoundTag.getInt("vectorType"));
+        VectorTypeMode vectorType = VectorTypeMode.fromIndex(compoundTag.getInt("vectorType"));
 
         for (int ingredientId = 0; ingredientId < compoundTag.getInt("ingredientsSize"); ++ingredientId) {
             CompoundTag nbtIngredient = ingredients.getCompound(ingredientId);
