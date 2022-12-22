@@ -8,6 +8,7 @@ import fr.mamiemru.blocrouter.items.ItemsRegistry;
 import fr.mamiemru.blocrouter.items.custom.ItemDispatcherRoutingPattern;
 import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
 import fr.mamiemru.blocrouter.items.custom.ItemTeleportationSlot;
+import fr.mamiemru.blocrouter.util.patterns.DispatcherPattern;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -78,6 +79,11 @@ public class DispatcherPatternEncoderEntity extends BaseEntityPatternEncoder {
                 ItemDispatcherRoutingPattern.encodePatternTag(itemStackHandler.getStackInSlot(SLOT_INPUT_SLOT_PATTERN), ingredients, vectorType, referenceBlockPos);
             }
         }
+    }
+
+    @Override
+    public DispatcherPattern decodePattern(ItemStack is) {
+        return ItemDispatcherRoutingPattern.decodePatternTag(is);
     }
 
     public boolean hasTeleportationCardSlot() {

@@ -7,6 +7,7 @@ import fr.mamiemru.blocrouter.items.ItemsRegistry;
 import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
 import fr.mamiemru.blocrouter.items.custom.ItemVacuumRoutingPattern;
 import fr.mamiemru.blocrouter.util.patterns.Pattern;
+import fr.mamiemru.blocrouter.util.patterns.VacuumPattern;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -88,6 +89,11 @@ public class VacuumPatternEncoderEntity extends BaseEntityPatternEncoder {
             }
         }
 
+    }
+
+    @Override
+    public VacuumPattern decodePattern(ItemStack is) {
+        return ItemVacuumRoutingPattern.decodePatternTag(is);
     }
 
     @Override

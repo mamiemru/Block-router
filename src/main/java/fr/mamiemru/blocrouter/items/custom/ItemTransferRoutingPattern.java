@@ -3,14 +3,17 @@ package fr.mamiemru.blocrouter.items.custom;
 import fr.mamiemru.blocrouter.blocks.custom.statesProperties.WhiteBlackList;
 import fr.mamiemru.blocrouter.util.patterns.Pattern;
 import fr.mamiemru.blocrouter.util.patterns.TransferPattern;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,7 +36,7 @@ public class ItemTransferRoutingPattern extends ItemRoutingPattern {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level level, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (pStack.hasTag()) {
-            TransferPattern transferPattern = Pattern.decodeTransferPattern(pStack.getTag());
+            TransferPattern transferPattern = decodePatternTag(pStack);
             pTooltipComponents.add(Component.literal("Extract from " + transferPattern.getTransferInput().toShortString()));
             pTooltipComponents.add(Component.literal(WhiteBlackList.fromIndex(transferPattern.isWhitelist()) + " mode"));
 
@@ -68,4 +71,24 @@ public class ItemTransferRoutingPattern extends ItemRoutingPattern {
             super.appendHoverText(pStack, level, pTooltipComponents, pIsAdvanced);
         }
     }
+
+    public static TransferPattern decodePatternTag(ItemStack is) {
+        if (is.hasTag()) {
+            CompoundTag tag = is.getTag();
+            Tag uuid = tag.get(ItemRoutingPattern.getNbtUuid());
+            int isExtraction = tag.getInt("isExtraction");
+            int isWhitelist = tag.getInt("isWhitelist");
+
+            List<ItemStack> ingredients = decodeIngredients(tag.getList("ingredients", Tag.TAG_COMPOUND));
+            List<ItemStack> trash = decodeIngredients(tag.getList("trash", Tag.TAG_COMPOUND));
+
+            List<BlockPos> transferOutput = decodeCoords(tag.getList("transferOutput", Tag.TAG_COMPOUND));
+            BlockPos transferInput = decodeCoords(tag.getList("transferOutput", Tag.TAG_COMPOUND).getCompound(0));
+
+            return new TransferPattern(uuid.getAsString(), isExtraction, isWhitelist, ingredients, trash, transferInput, transferOutput);
+        }
+
+        return null;
+    }
+
 }

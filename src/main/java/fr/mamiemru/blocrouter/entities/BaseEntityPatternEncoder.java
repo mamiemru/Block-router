@@ -3,6 +3,7 @@ package fr.mamiemru.blocrouter.entities;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.PatternEncoderEntity;
 import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
 import fr.mamiemru.blocrouter.items.custom.ItemTeleportationSlot;
+import fr.mamiemru.blocrouter.util.patterns.Pattern;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -26,9 +27,11 @@ public abstract class BaseEntityPatternEncoder extends BaseEntityWithMenuProvide
 
     public abstract void encodePattern();
 
+    public abstract Pattern decodePattern(ItemStack is);
+
     public abstract int getNumberOfIngredientsSlots();
 
-    protected abstract int getSlotPatternSlot();
+    public abstract int getSlotPatternSlot();
 
     protected abstract int getTeleportationCardSlot0();
 

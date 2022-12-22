@@ -6,6 +6,7 @@ import fr.mamiemru.blocrouter.entities.custom.patternEncoder.VacuumPatternEncode
 import fr.mamiemru.blocrouter.gui.menu.menus.patternEncoder.VacuumPatternEncoderMenu;
 import fr.mamiemru.blocrouter.gui.menu.slot.PatternItemSlot;
 import fr.mamiemru.blocrouter.gui.screen.BaseContainerScreenPatternEncoder;
+import fr.mamiemru.blocrouter.items.custom.ItemVacuumRoutingPattern;
 import fr.mamiemru.blocrouter.network.ModNetworking;
 import fr.mamiemru.blocrouter.network.packet.FakeItemInsertionC2SPacket;
 import fr.mamiemru.blocrouter.network.packet.FakeItemRemoveC2SPacket;

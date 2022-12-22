@@ -8,6 +8,7 @@ import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
 import fr.mamiemru.blocrouter.items.custom.ItemTeleportationSlot;
 import fr.mamiemru.blocrouter.items.custom.ItemTransferRoutingPattern;
 import fr.mamiemru.blocrouter.util.patterns.Pattern;
+import fr.mamiemru.blocrouter.util.patterns.TransferPattern;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -153,6 +154,11 @@ public class TransferPatternEncoderEntity extends BaseEntityPatternEncoder {
                     var_insert_or_extract, var_whitelist_index, transferInput, transferOutput, trash, ingredients
             );
         }
+    }
+
+    @Override
+    public TransferPattern decodePattern(ItemStack is) {
+        return ItemTransferRoutingPattern.decodePatternTag(is);
     }
 
     public void dropToggleInsertion() {

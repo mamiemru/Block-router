@@ -8,6 +8,7 @@ import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
 import fr.mamiemru.blocrouter.items.custom.ItemSlotRoutingPattern;
 import fr.mamiemru.blocrouter.items.custom.ItemTeleportationSlot;
 import fr.mamiemru.blocrouter.util.patterns.Pattern;
+import fr.mamiemru.blocrouter.util.patterns.SlotPattern;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.ListTag;
@@ -134,6 +135,11 @@ public class SlotPatternEncoderEntity extends BaseEntityPatternEncoder {
                 ItemSlotRoutingPattern.encodePatternTag(itemStackHandler.getStackInSlot(SLOT_INPUT_SLOT_PATTERN), ingredients, target);
             }
         }
+    }
+
+    @Override
+    public SlotPattern decodePattern(ItemStack is) {
+        return ItemSlotRoutingPattern.decodePatternTag(is);
     }
 
     @Override

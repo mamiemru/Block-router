@@ -84,7 +84,7 @@ public class ItemEnderRoutingPattern extends ItemRoutingPattern {
         for (int i = 0; i < EnderPatternEncoderEntity.NUMBER_OF_TELEPORTATION_CARD_OUTPUT_SLOTS; ++i) {
             CompoundTag nbt = nbtOutput.getCompound(i);
             if (!nbt.isEmpty()) {
-                blockPosArrayList.add(Pattern.decodeCoords(nbt));
+                blockPosArrayList.add(ItemRoutingPattern.decodeCoords(nbt));
             }
         }
 

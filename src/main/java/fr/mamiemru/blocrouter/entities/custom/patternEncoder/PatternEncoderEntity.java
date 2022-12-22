@@ -6,6 +6,7 @@ import fr.mamiemru.blocrouter.gui.menu.menus.patternEncoder.PatternEncoderMenu;
 import fr.mamiemru.blocrouter.items.ItemsRegistry;
 import fr.mamiemru.blocrouter.items.custom.ItemNormalRoutingPattern;
 import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
+import fr.mamiemru.blocrouter.util.patterns.NormalRoutingPattern;
 import fr.mamiemru.blocrouter.util.patterns.Pattern;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -75,6 +76,11 @@ public class PatternEncoderEntity extends BaseEntityPatternEncoder {
             }
         }
 
+    }
+
+    @Override
+    public NormalRoutingPattern decodePattern(ItemStack is) {
+        return ItemNormalRoutingPattern.decodePatternTag(is);
     }
 
     @Override

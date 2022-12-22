@@ -45,7 +45,7 @@ public class DispatcherRouterEntity extends BaseEntityEnergyRouter {
     }
 
     @Override
-    protected Pattern getCastedPattern(ItemStack is) {
+    public Pattern getCastedPattern(ItemStack is) {
         return (is != null && is.getItem() instanceof ItemDispatcherRoutingPattern && is.getCount() == 1 && is.hasTag()) ?
                 ItemDispatcherRoutingPattern.decodePatternTag(is) : null;
     }

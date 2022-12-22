@@ -135,7 +135,6 @@ public class DispatcherPatternEncoderScreen extends BaseContainerScreenPatternEn
             int px = slotVector.getX();
             int py = slotVector.getZ();
             int slotIndex = DispatcherPatternEncoderEntity.SLOT_INPUT_MIN + py + px * 9;
-            System.out.println("px:"+px+" py:"+py+" -> SlotIndex: " + slotIndex);
             changeFakeItemStackFromCoordinates(pMouseX, pMouseY, x, y, offsetX + 18 * px, offsetY + 18 * py, slotIndex);
         }
 

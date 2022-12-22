@@ -5,14 +5,18 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import fr.mamiemru.blocrouter.gui.menu.BaseContainerMenuPatternEncoder;
 import fr.mamiemru.blocrouter.gui.menu.widgets.CycleIconButton;
 import fr.mamiemru.blocrouter.gui.menu.widgets.XButton;
+import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
 import fr.mamiemru.blocrouter.network.ModNetworking;
 import fr.mamiemru.blocrouter.network.packet.FakeItemInsertionC2SPacket;
 import fr.mamiemru.blocrouter.network.packet.FakeItemRemoveC2SPacket;
 import fr.mamiemru.blocrouter.network.packet.PatternEncoderChangeC2SPacket;
 import fr.mamiemru.blocrouter.network.packet.PatternEncoderEncodeC2SPacket;
+import fr.mamiemru.blocrouter.util.patterns.Pattern;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.widget.ExtendedButton;
 
@@ -76,15 +80,18 @@ public abstract class BaseContainerScreenPatternEncoder<T extends BaseContainerM
 
     protected boolean changeFakeItemStackFromCoordinates(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY, int slotIndex) {
         if (isMouseAboveArea(pMouseX, pMouseY, x, y, offsetX, offsetY, 18, 18)) {
-            final ItemStack carriedItem = menu.getCarried();
-            if (carriedItem.isEmpty()) {
-                ModNetworking.sendToServer(new FakeItemRemoveC2SPacket(getMenu().containerId, slotIndex));
-            } else {
-                ModNetworking.sendToServer(new FakeItemInsertionC2SPacket(getMenu().containerId, slotIndex, carriedItem));
-            }
+            changeFakeItemStackOnSlot(menu.getCarried(), slotIndex);
             return true;
         }
         return false;
+    }
+
+    protected void changeFakeItemStackOnSlot(ItemStack is, int slotIndex) {
+        if (is.isEmpty()) {
+            ModNetworking.sendToServer(new FakeItemRemoveC2SPacket(getMenu().containerId, slotIndex));
+        } else {
+            ModNetworking.sendToServer(new FakeItemInsertionC2SPacket(getMenu().containerId, slotIndex, is));
+        }
     }
 
     protected int getX() {
@@ -93,5 +100,17 @@ public abstract class BaseContainerScreenPatternEncoder<T extends BaseContainerM
 
     protected int getY() {
         return (height - imageHeight) / 2;
+    }
+
+    @Override
+    protected void slotClicked(Slot pSlot, int pSlotId, int pMouseButton, ClickType pType) {
+        System.out.println("Slot:" + pSlot + " SlotId:" + pSlotId + " pMouseButton:" + pMouseButton + " pType:" + pType);
+        /**
+        if (pSlotId == getMenu().getEntity().getSlotPatternSlot() && !pSlot.getItem().isEmpty()) {
+            Pattern pattern = getMenu().getEntity().decodePattern(pSlot.getItem());
+        }
+        */
+
+        super.slotClicked(pSlot, pSlotId, pMouseButton, pType);
     }
 }

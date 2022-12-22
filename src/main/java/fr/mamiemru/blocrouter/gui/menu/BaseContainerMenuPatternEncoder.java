@@ -4,6 +4,7 @@ import fr.mamiemru.blocrouter.entities.BaseEntityPatternEncoder;
 import fr.mamiemru.blocrouter.entities.BaseEntityWithMenuProvider;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.PatternEncoderEntity;
 import fr.mamiemru.blocrouter.gui.menu.menus.patternEncoder.VacuumPatternEncoderMenu;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;

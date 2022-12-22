@@ -48,14 +48,13 @@ public abstract class BaseEntityEnergyRouter extends BaseEntityEnergy {
     }
 
     private void loadPatterns() {
-        if (getLevel() != null && !getLevel().isClientSide()) {
-            for (int patternSlot = 0; patternSlot < getNumberOfPatternSlots(); ++patternSlot) {
-                ItemStack is = itemStackHandler.getStackInSlot(getSlotPatternSlot0() + patternSlot);
-                if (is != null && !is.isEmpty()) {
-                    BaseEntityEnergyRouter.this.patterns.add(patternSlot, getCastedPattern(is));
-                } else {
-                    BaseEntityEnergyRouter.this.patterns.add(patternSlot, null);
-                }
+        BaseEntityEnergyRouter.this.patterns.clear();
+        for (int patternSlot = 0; patternSlot < getNumberOfPatternSlots(); ++patternSlot) {
+            ItemStack is = itemStackHandler.getStackInSlot(getSlotPatternSlot0() + patternSlot);
+            if (is != null && !is.isEmpty()) {
+                BaseEntityEnergyRouter.this.patterns.add(patternSlot, getCastedPattern(is));
+            } else {
+                BaseEntityEnergyRouter.this.patterns.add(patternSlot, null);
             }
         }
     }
