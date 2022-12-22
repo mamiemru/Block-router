@@ -39,5 +39,6 @@
   "block.block_router.block_ender_energy_scatter": "Ender Energy Scatter",
   "block.block_router.block_retriever": "Retriever",
   "block.block_router.block_ender_retriever": "Ender Retriever",
-  "block.block_router.block_ender_amethyst": "Ender Amethyst Block"
+  "block.block_router.block_ender_amethyst": "Ender Amethyst Block",
+  "block.block_router.block_mob_loot_sorter": "Mob Loots sorter"
 }

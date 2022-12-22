@@ -188,14 +188,6 @@ public class BufferEntity extends BaseEntityWithMenuProvider {
         return new BufferMenu(id, inventory, this, this.data);
     }
 
-    public void drops() {
-        SimpleContainer inventory = new SimpleContainer(itemStackHandler.getSlots());
-        for (int i = 0; i < itemStackHandler.getSlots(); i++) {
-            inventory.setItem(i, itemStackHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
     private boolean canInsert() { return toggleInsert == 1; }
     private boolean canExtract() { return toggleInsert == 0; }
     private void toggleInsertion() { toggleInsert = 1; }
@@ -250,6 +242,14 @@ public class BufferEntity extends BaseEntityWithMenuProvider {
             drops();
         }
         itemMaxCount = threshold;
+    }
+
+    public void drops() {
+        SimpleContainer inventory = new SimpleContainer(itemStackHandler.getSlots());
+        for (int i = 0; i < itemStackHandler.getSlots(); i++) {
+            inventory.setItem(i, itemStackHandler.getStackInSlot(i));
+        }
+        Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
     public ItemStack getRenderStack() {

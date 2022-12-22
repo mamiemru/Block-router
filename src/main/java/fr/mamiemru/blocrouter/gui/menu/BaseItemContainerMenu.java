@@ -19,10 +19,10 @@ public abstract class BaseItemContainerMenu extends AbstractContainerMenu {
     protected final Inventory inv;
     protected final Player player;
     protected ItemStack containerStack;
-    protected CallbackItemHandler invWrapper;
+    protected ItemStackHandler invWrapper;
     protected Slot slotLocked;
 
-    protected abstract CallbackItemHandler loadInventory(ItemStack itemStack);
+    protected abstract ItemStackHandler loadInventory(ItemStack itemStack);
 
     public BaseItemContainerMenu(MenuType<ItemFilterMenu> menu, int windowId, Inventory inventory, Player player) {
         super(menu, windowId);

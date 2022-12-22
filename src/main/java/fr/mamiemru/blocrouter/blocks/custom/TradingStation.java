@@ -1,5 +1,6 @@
 package fr.mamiemru.blocrouter.blocks.custom;
 
+import fr.mamiemru.blocrouter.blocks.BaseBlockRouterBlock;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.entities.custom.TradingStationEntity;
 import net.minecraft.core.BlockPos;
@@ -24,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TradingStation extends BaseEntityBlock {
+public class TradingStation extends BaseBlockRouterBlock {
 
     public TradingStation() {
         super(Properties.of(Material.HEAVY_METAL));
@@ -49,6 +50,12 @@ public class TradingStation extends BaseEntityBlock {
 
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
+
+    @Override
+    protected boolean isEntityInstanceOf(Object o) {
+        return o instanceof TradingStationEntity;
+    }
+
     @Override
     public RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;

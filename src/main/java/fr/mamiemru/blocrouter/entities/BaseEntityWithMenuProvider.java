@@ -153,8 +153,6 @@ public abstract class BaseEntityWithMenuProvider extends BlockEntity implements 
 
     protected static void processExtractionFromSelfToDistantWithPattern(@NotNull BaseEntityWithMenuProvider pEntity, @NotNull ItemStackHandler itemStackHandler, @NotNull NormalRoutingPattern pattern, @NotNull BlockPos entity_pos, int start_slot, int stop_slot) {
 
-        boolean canInsertAllIngredients = true;
-
         IItemHandler[] targetInventories = new IItemHandler[pattern.getRows().size()];
         ItemStack[] itemsToTransfers = new ItemStack[pattern.getRows().size()];
         int[] insertionSlot = new int[pattern.getRows().size()];
@@ -164,33 +162,36 @@ public abstract class BaseEntityWithMenuProvider extends BlockEntity implements 
         for (int idRow = 0; idRow < pattern.getRows().size(); ++idRow) {
             PatternRow patternRow = pattern.getRows().get(idRow);
 
-            if (!patternRow.is.isEmpty()) {
-                for (int i = start_slot; i <= stop_slot; ++i) {
+            if (patternRow.is.isEmpty()) {
+                continue;
+            }
 
-                    ItemStack itemsToTransfer = itemStackHandler.extractItem(i, patternRow.is.getCount(), true);
-                    IItemHandler targetInventory = RouterEntity.getItemHandler(pEntity.getLevel(), entity_pos, directions[patternRow.axe]);
-                    if (targetInventory != null && itemStackAreEqual(patternRow.is, itemsToTransfer)) {
+            for (int i = start_slot; i <= stop_slot; ++i) {
 
-                        if (patternRow.slot < targetInventory.getSlots() && canTransferFromSelfToDistant(itemsToTransfer, targetInventory, patternRow.slot)) {
-                            targetInventories[idRow] = targetInventory;
-                            itemsToTransfers[idRow] = itemsToTransfer;
-                            insertionSlot[idRow] = patternRow.slot;
-                            extractionSlot[idRow] = i;
-                        } else {
-                            canInsertAllIngredients = false;
-                        }
-                        break;
-                    }
+                ItemStack itemsToTransfer = itemStackHandler.extractItem(i, patternRow.is.getCount(), true);
+                IItemHandler targetInventory = RouterEntity.getItemHandler(pEntity.getLevel(), entity_pos, directions[patternRow.axe]);
+
+                if (targetInventory == null || !itemStackAreEqual(patternRow.is, itemsToTransfer)) {
+                    continue;
                 }
+
+                if (canTransferFromSelfToDistant(itemsToTransfer, targetInventory, patternRow.slot)) {
+                    targetInventories[idRow] = targetInventory;
+                    itemsToTransfers[idRow] = itemsToTransfer;
+                    insertionSlot[idRow] = patternRow.slot;
+                    extractionSlot[idRow] = i;
+                } else {
+                    return;
+                }
+
+                break;
             }
         }
 
-        if (canInsertAllIngredients) {
-            for (int idRow = 0; idRow < pattern.getRows().size(); ++idRow) {
-                if (targetInventories[idRow] != null) {
-                    targetInventories[idRow].insertItem(insertionSlot[idRow], itemsToTransfers[idRow], false);
-                    itemStackHandler.extractItem(extractionSlot[idRow], itemsToTransfers[idRow].getCount(), false);
-                }
+        for (int idRow = 0; idRow < pattern.getRows().size(); ++idRow) {
+            if (targetInventories[idRow] != null) {
+                targetInventories[idRow].insertItem(insertionSlot[idRow], itemsToTransfers[idRow], false);
+                itemStackHandler.extractItem(extractionSlot[idRow], itemsToTransfers[idRow].getCount(), false);
             }
         }
     }

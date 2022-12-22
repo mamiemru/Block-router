@@ -8,6 +8,7 @@ import fr.mamiemru.blocrouter.items.custom.ItemNormalRoutingPattern;
 import fr.mamiemru.blocrouter.items.custom.ItemRoutingPattern;
 import fr.mamiemru.blocrouter.util.patterns.Pattern;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -62,7 +63,7 @@ public class PatternEncoderEntity extends BaseEntityPatternEncoder {
                 ItemStack is = itemStackHandler.getStackInSlot(ii);
                 if (!is.isEmpty()) {
                     patternIsEmpty = false;
-                    ingredients.add(Pattern.encodePatternIngredient(array[ii+NUMBER_OF_INGREDIENTS_INPUT_SLOTS], is, array[ii]));
+                    ingredients.add(Pattern.encodePatternIngredient(0, is, array[ii]));
                 }
 
             }

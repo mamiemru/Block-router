@@ -60,6 +60,8 @@ public class MenuTypes {
             registerMenuType(EnderRetrieverMenu::new, "ender_retriever_menu");
     public static final RegistryObject<MenuType<EnderEnergyScatterMenu>> ENDER_ENERGY_SCATTER_MENU =
             registerMenuType(EnderEnergyScatterMenu::new, "ender_energy_scatter_menu");
+    public static final RegistryObject<MenuType<MobLootSorterMenu>> MOB_LOOT_SORTER_MENU =
+            registerMenuType(MobLootSorterMenu::new, "mob_loot_sorter_menu");
 
     public static final RegistryObject<MenuType<ItemFilterMenu>> ITEM_FILTER_MENU =
             MENUS.register("item_filter_menu", () -> IForgeMenuType.create(((windowId, inv, data) -> new ItemFilterMenu(windowId, inv, Minecraft.getInstance().player))));

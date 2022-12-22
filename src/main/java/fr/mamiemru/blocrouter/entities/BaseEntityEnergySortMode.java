@@ -7,7 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class BaseEntityEnergySortMode extends BaseEntityEnergy {
+public abstract class BaseEntityEnergySortMode extends BaseEntityEnergyMachine {
 
     protected int slotPointer = 0;
 

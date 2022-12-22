@@ -12,4 +12,13 @@ public class PatternRow {
         this.is = is;
         this.axe = axe;
     }
+
+    @Override
+    public String toString() {
+        return "PatternRow{" +
+                "slot=" + slot +
+                ", is=" + is +
+                ", axe=" + axe +
+                '}';
+    }
 }

@@ -8,11 +8,21 @@ import fr.mamiemru.blocrouter.entities.custom.routers.*;
 import fr.mamiemru.blocrouter.entities.custom.scatter.EnderEnergyScatterEntity;
 import fr.mamiemru.blocrouter.entities.custom.scatter.EnderScatterEntity;
 import fr.mamiemru.blocrouter.entities.custom.scatter.ScatterEntity;
+import fr.mamiemru.blocrouter.items.custom.ItemNormalRoutingPattern;
+import fr.mamiemru.blocrouter.util.patterns.NormalRoutingPattern;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 public class EntitiesRegistry {
 
@@ -95,8 +105,14 @@ public class EntitiesRegistry {
             BLOCK_ENTITIES.register("ender_retriever_entity", () ->
                     BlockEntityType.Builder.of(EnderRetrieverEntity::new,
                             BlocksRegistry.BLOCK_ENDER_RETRIEVER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<MobLootSorterEntity>> MOB_LOOT_SORTER_ENTITY =
+            BLOCK_ENTITIES.register("mob_loot_sorter_entity", () ->
+                    BlockEntityType.Builder.of(MobLootSorterEntity::new,
+                            BlocksRegistry.BLOCK_MOB_LOOT_SORTER.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }
 }
+
+

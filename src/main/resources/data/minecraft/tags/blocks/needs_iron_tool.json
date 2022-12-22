@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "block_router.block_router",
+    "block_router.block_ender_router",
+    "block_router.block_transfer_router",
+    "block_router.block_dispatcher_router",
+    "block_router.block_slot_router",
+    "block_router.block_vacuum_router",
+    "block_router.block_machine_block",
+    "block_router.block_pattern_encoder",
+    "block_router.block_ender_pattern_encoder",
+    "block_router.block_transfer_pattern_encoder",
+    "block_router.block_dispatcher_pattern_encoder",
+    "block_router.block_slot_pattern_encoder",
+    "block_router.block_vacuum_pattern_encoder",
+    "block_router.block_trading_station",
+    "block_router.block_item_buffer",
+    "block_router.block_scatter",
+    "block_router.block_ender_scatter",
+    "block_router.block_ender_energy_scatter",
+    "block_router.block_retriever",
+    "block_router.block_ender_retriever",
+    "block_router.block_ender_amethyst",
+    "block_router.block_mob_loot_sorter"
+  ]
+}

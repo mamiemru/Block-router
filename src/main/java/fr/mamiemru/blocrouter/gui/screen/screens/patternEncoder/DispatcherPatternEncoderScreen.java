@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import fr.mamiemru.blocrouter.BlocRouter;
 import fr.mamiemru.blocrouter.blocks.custom.statesProperties.VectorTypeMode;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.DispatcherPatternEncoderEntity;
+import fr.mamiemru.blocrouter.entities.custom.patternEncoder.VacuumPatternEncoderEntity;
 import fr.mamiemru.blocrouter.gui.menu.menus.patternEncoder.DispatcherPatternEncoderMenu;
 import fr.mamiemru.blocrouter.gui.menu.widgets.CycleIconButton;
 import fr.mamiemru.blocrouter.gui.screen.BaseContainerScreen;
@@ -85,10 +86,10 @@ public class DispatcherPatternEncoderScreen extends BaseContainerScreenPatternEn
     @Override
     public void renderTooltip(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         super.renderTooltip(pPoseStack, pMouseX, pMouseY);
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
+        int x = getX();
+        int y = getY();
 
-        int offsetX = 19;
+        int offsetX = 7;
         int offsetY = 7;
         if (getMenu().getEntity().hasTeleportationCardSlot() && isMouseAboveArea(pMouseX, pMouseY, x, y, offsetX, offsetY, 161, 161)) {
             Vec3i slotVector = getSlotVectorFromMouseCursorCoordinates(pMouseX, pMouseY, x, y, offsetX, offsetY, 18);
@@ -101,7 +102,7 @@ public class DispatcherPatternEncoderScreen extends BaseContainerScreenPatternEn
             renderTooltip(pPoseStack, pText, Optional.empty(), x - 12, y - 12);
         }
 
-        else if (isMouseAboveArea(pMouseX, pMouseY, x, y,37,153,20,36)) {
+        else if (isMouseAboveArea(pMouseX, pMouseY, x, y,25,163,18, 22)) {
             List<Component> pText = List.of(
                     Component.literal(VectorTypeMode.fromIndex(getMenu().getVectorType()) + " perspective")
             );
@@ -114,9 +115,7 @@ public class DispatcherPatternEncoderScreen extends BaseContainerScreenPatternEn
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, getTextureGui());
-        int x = (width - imageWidth + 24) / 2;
-        int y = (height - imageHeight) / 2;
-        this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight, 256, 300);
+        this.blit(pPoseStack, getX(), getY(), 0, 0, imageWidth, imageHeight, 256, 300);
     }
 
     @Override
@@ -126,6 +125,25 @@ public class DispatcherPatternEncoderScreen extends BaseContainerScreenPatternEn
 
     @Override
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
+        int x = getX();
+        int y = getY();
+
+        int offsetX = 7;
+        int offsetY = 7;
+        if (isMouseAboveArea(pMouseX, pMouseY, x, y, offsetX, offsetY, 161, 161)) {
+            Vec3i slotVector = getSlotVectorFromMouseCursorCoordinates((int) pMouseX, (int) pMouseY, x, y, offsetX, offsetY, 18);
+            int px = slotVector.getX();
+            int py = slotVector.getZ();
+            int slotIndex = DispatcherPatternEncoderEntity.SLOT_INPUT_MIN + py + px * 9;
+            System.out.println("px:"+px+" py:"+py+" -> SlotIndex: " + slotIndex);
+            changeFakeItemStackFromCoordinates(pMouseX, pMouseY, x, y, offsetX + 18 * px, offsetY + 18 * py, slotIndex);
+        }
+
         return super.mouseClicked(pMouseX, pMouseY, pButton);
+    }
+
+    @Override
+    protected int getY() {
+        return (height - imageHeight) / 2;
     }
 }

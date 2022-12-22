@@ -157,7 +157,8 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:thermalExpansion-69163:4112130")
     runtimeOnly fg.deobf("curse.maven:thermalFoundation-222880:4112137")
     runtimeOnly fg.deobf("curse.maven:pipez-443900:4064952")
-    //runtimeOnly fg.deobf("curse.maven:create-328085:4011414")
+    //runtimeOnly fg.deobf("curse.maven:create-328085:4011414"))
+    runtimeOnly fg.deobf("curse.maven:scannable-266784:3968305")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

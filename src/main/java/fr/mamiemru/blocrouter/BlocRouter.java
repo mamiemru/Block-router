@@ -84,6 +84,7 @@ public class BlocRouter
             MenuScreens.register(MenuTypes.ENDER_RETRIEVER_MENU.get(), EnderRetrieverScreen::new);
             MenuScreens.register(MenuTypes.ENDER_ENERGY_SCATTER_MENU.get(), EnderEnergyScatterScreen::new);
             MenuScreens.register(MenuTypes.ITEM_FILTER_MENU.get(), ItemFilterScreen::new);
+            MenuScreens.register(MenuTypes.MOB_LOOT_SORTER_MENU.get(), MobLootSorterScreen::new);
         }
     }
 }

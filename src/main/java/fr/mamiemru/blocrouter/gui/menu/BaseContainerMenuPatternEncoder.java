@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,4 +32,13 @@ public abstract class BaseContainerMenuPatternEncoder extends BaseContainerMenu 
         }
     }
 
+    public void removeItemAt(int index) {
+        getEntity().removeItemAt(index);
+        this.craftMatrix.setItem(index, ItemStack.EMPTY);
+    }
+
+    public void setItemAt(int index, ItemStack itemStack) {
+        getEntity().setItemAt(index, itemStack);
+        this.craftMatrix.setItem(index, itemStack);
+    }
 }

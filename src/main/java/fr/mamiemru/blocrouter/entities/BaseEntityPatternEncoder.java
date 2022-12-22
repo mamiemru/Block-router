@@ -115,7 +115,9 @@ public abstract class BaseEntityPatternEncoder extends BaseEntityWithMenuProvide
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemStackHandler.getSlots());
         for (int i = 0; i < itemStackHandler.getSlots(); i++) {
-            inventory.setItem(i, itemStackHandler.getStackInSlot(i));
+            if (i < getItemSlot0() || getItemSlotN() < i) {
+                inventory.setItem(i, itemStackHandler.getStackInSlot(i));
+            }
         }
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
@@ -128,4 +130,11 @@ public abstract class BaseEntityPatternEncoder extends BaseEntityWithMenuProvide
 
     public static void tick(Level level, BlockPos pos, BlockState state, PatternEncoderEntity pEntity) {}
 
+    public void removeItemAt(int index) {
+        itemStackHandler.setStackInSlot(index, ItemStack.EMPTY);
+    }
+
+    public void setItemAt(int index, ItemStack itemStack) {
+        itemStackHandler.setStackInSlot(index, itemStack);
+    }
 }

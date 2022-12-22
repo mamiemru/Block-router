@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "qBq",
+    "G#G"
+  ],
+  "key": {
+    "G": {
+      "item": "block_router:item_amethyst_gear"
+    },
+    "B": {
+      "item": "block_router:block_machine_block"
+    },
+    "q": {
+      "item": "minecraft:quartz"
+    },
+    "P": {
+      "item": "block_router:item_filter"
+    },
+    "#": {
+      "item": "minecraft:black_concrete"
+    }
+  },
+  "result": {
+    "item": "block_router:block_mob_loot_sorter"
+  }
+}

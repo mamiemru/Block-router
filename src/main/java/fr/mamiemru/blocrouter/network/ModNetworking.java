@@ -99,10 +99,22 @@ public class ModNetworking {
                 .consumerMainThread(VacuumRouterChangerDropHeightC2SPacket::handle)
                 .add();
 
-    net.messageBuilder(PatternEncoderChangeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+        net.messageBuilder(PatternEncoderChangeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PatternEncoderChangeC2SPacket::new)
                 .encoder(PatternEncoderChangeC2SPacket::toBytes)
                 .consumerMainThread(PatternEncoderChangeC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(FakeItemInsertionC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(FakeItemInsertionC2SPacket::new)
+                .encoder(FakeItemInsertionC2SPacket::toBytes)
+                .consumerMainThread(FakeItemInsertionC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(FakeItemRemoveC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(FakeItemRemoveC2SPacket::new)
+                .encoder(FakeItemRemoveC2SPacket::toBytes)
+                .consumerMainThread(FakeItemRemoveC2SPacket::handle)
                 .add();
     }
 

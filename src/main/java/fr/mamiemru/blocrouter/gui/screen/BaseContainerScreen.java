@@ -41,6 +41,10 @@ public abstract class BaseContainerScreen<T extends AbstractContainerMenu> exten
         renderTooltip(pPoseStack, mouseX, mouseY);
     }
 
+    protected boolean isMouseAboveArea(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
+        return isMouseAboveArea((int)pMouseX, (int)pMouseY, x, y, offsetX, offsetY, width, height);
+    }
+
     protected boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
         int minZoneX = (x + offsetX);
         int minZoneY = (y + offsetY);

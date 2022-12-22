@@ -1,5 +1,6 @@
 package fr.mamiemru.blocrouter.blocks.custom.statesProperties;
 
+import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
 
 public enum Sides implements StringRepresentable {
@@ -26,23 +27,15 @@ public enum Sides implements StringRepresentable {
         return this.name;
     }
 
-    public static int toIndex(Comparable i) {
-        if (i == NORTH) { return 0;}
-        else if (i == SOUTH) { return 1;}
-        else if (i == EAST) { return 2;}
-        else if (i == WEST) { return 3;}
-        else if (i == UP) { return 4;}
-        return 5;
-    }
-
     public static Sides fromIndex(int index) {
         return switch (index) {
-            case 1 -> SOUTH;
-            case 2 -> EAST;
-            case 3 -> WEST;
-            case 4 -> UP;
+            case 2 -> SOUTH;
+            case 3 -> EAST;
+            case 4 -> WEST;
+            case 0 -> UP;
             case 5 -> DOWN;
-            default -> NORTH;
+            case 1 -> NORTH;
+            default -> null;
         };
     }
 

@@ -6,11 +6,14 @@ import fr.mamiemru.blocrouter.gui.menu.BaseContainerMenuPatternEncoder;
 import fr.mamiemru.blocrouter.gui.menu.widgets.CycleIconButton;
 import fr.mamiemru.blocrouter.gui.menu.widgets.XButton;
 import fr.mamiemru.blocrouter.network.ModNetworking;
+import fr.mamiemru.blocrouter.network.packet.FakeItemInsertionC2SPacket;
+import fr.mamiemru.blocrouter.network.packet.FakeItemRemoveC2SPacket;
 import fr.mamiemru.blocrouter.network.packet.PatternEncoderChangeC2SPacket;
 import fr.mamiemru.blocrouter.network.packet.PatternEncoderEncodeC2SPacket;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.widget.ExtendedButton;
 
 public abstract class BaseContainerScreenPatternEncoder<T extends BaseContainerMenuPatternEncoder> extends BaseContainerScreen<T> {
@@ -68,9 +71,27 @@ public abstract class BaseContainerScreenPatternEncoder<T extends BaseContainerM
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, getTextureGui());
-        int x = (width - imageWidth + 24) / 2;
-        int y = (height - imageHeight) / 2;
+        this.blit(pPoseStack, getX(), getY(), 0, 0, imageWidth, imageHeight);
+    }
 
-        this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+    protected boolean changeFakeItemStackFromCoordinates(double pMouseX, double pMouseY, int x, int y, int offsetX, int offsetY, int slotIndex) {
+        if (isMouseAboveArea(pMouseX, pMouseY, x, y, offsetX, offsetY, 18, 18)) {
+            final ItemStack carriedItem = menu.getCarried();
+            if (carriedItem.isEmpty()) {
+                ModNetworking.sendToServer(new FakeItemRemoveC2SPacket(getMenu().containerId, slotIndex));
+            } else {
+                ModNetworking.sendToServer(new FakeItemInsertionC2SPacket(getMenu().containerId, slotIndex, carriedItem));
+            }
+            return true;
+        }
+        return false;
+    }
+
+    protected int getX() {
+        return (width - imageWidth + 24) / 2;
+    }
+
+    protected int getY() {
+        return (height - imageHeight) / 2;
     }
 }

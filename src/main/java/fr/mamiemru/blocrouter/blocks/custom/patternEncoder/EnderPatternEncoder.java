@@ -1,5 +1,6 @@
 package fr.mamiemru.blocrouter.blocks.custom.patternEncoder;
 
+import fr.mamiemru.blocrouter.blocks.BaseBlockRouterBlock;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.EnderPatternEncoderEntity;
 import net.minecraft.core.BlockPos;
@@ -20,10 +21,15 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class EnderPatternEncoder extends BaseEntityBlock  {
+public class EnderPatternEncoder extends BaseBlockRouterBlock {
 
     public EnderPatternEncoder() {
         super(Properties.of(Material.METAL));
+    }
+
+    @Override
+    protected boolean isEntityInstanceOf(Object o) {
+        return o instanceof EnderPatternEncoderEntity;
     }
 
     @Override

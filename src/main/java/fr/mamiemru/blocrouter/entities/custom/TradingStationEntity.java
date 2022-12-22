@@ -1,5 +1,6 @@
 package fr.mamiemru.blocrouter.entities.custom;
 
+import fr.mamiemru.blocrouter.entities.BaseEntityEnergyMachine;
 import fr.mamiemru.blocrouter.entities.BaseEntityWithMenuProvider;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import net.minecraft.core.BlockPos;
@@ -37,6 +38,7 @@ public class TradingStationEntity extends BaseEntityWithMenuProvider {
             return false;
         }
     };
+
     public TradingStationEntity(BlockPos pos, BlockState state) {
         super(EntitiesRegistry.TRADING_STATION_ENTITY.get(), pos, state);
     }
@@ -87,8 +89,6 @@ public class TradingStationEntity extends BaseEntityWithMenuProvider {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, TradingStationEntity pEntity) {
-        if (level.isClientSide()) {
-            return;
-        }
+
     }
 }
