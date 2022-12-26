@@ -2,6 +2,10 @@ package fr.mamiemru.blocrouter.blocks;
 
 import fr.mamiemru.blocrouter.BlocRouter;
 import fr.mamiemru.blocrouter.blocks.custom.*;
+import fr.mamiemru.blocrouter.blocks.custom.generators.PiezoelectricGeneratorBase;
+import fr.mamiemru.blocrouter.blocks.custom.generators.PiezoelectricHeavyPiston;
+import fr.mamiemru.blocrouter.blocks.custom.generators.PiezoelectricTube;
+import fr.mamiemru.blocrouter.blocks.custom.generators.PiezoelectricWeakPiston;
 import fr.mamiemru.blocrouter.blocks.custom.patternEncoder.*;
 import fr.mamiemru.blocrouter.blocks.custom.routers.*;
 import fr.mamiemru.blocrouter.blocks.custom.scatter.EnderEnergyScatter;
@@ -43,15 +47,18 @@ public class BlocksRegistry {
     public static final RegistryObject<Block> BLOCK_RETRIEVER = registerBlock("block_retriever", Retriever::new);
     public static final RegistryObject<Block> BLOCK_ENDER_RETRIEVER = registerBlock("block_ender_retriever", EnderRetriever::new);
     public static final RegistryObject<Block> BLOCK_MOB_LOOT_SORTER = registerBlock("block_mob_loot_sorter", MobLootSorter::new);
+    public static final RegistryObject<Block> BLOCK_PIEZOELECTRIC_GENERATOR_BASE = registerBlock("block_piezoelectric_generator_base", PiezoelectricGeneratorBase::new);
+    public static final RegistryObject<Block> BLOCK_PIEZOELECTRIC_TUBE = registerBlock("block_piezoelectric_tube", PiezoelectricTube::new);
+    public static final RegistryObject<Block> BLOCK_PIEZOELECTRIC_WEAK_PISTON = registerBlock("block_piezoelectric_weak_piston", PiezoelectricWeakPiston::new);
+    public static final RegistryObject<Block> BLOCK_PIEZOELECTRIC_HEAVY_PISTON = registerBlock("block_piezoelectric_heavy_piston", PiezoelectricHeavyPiston::new);
+    public static final RegistryObject<Block> BLOCK_TRADING_STATION = registerBlock("block_trading_station",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL))
+    );
 
     public static final RegistryObject<Block> BLOCK_MACHINE_BLOCK = registerBlock("block_machine_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)));
     public static final RegistryObject<Block> BLOCK_ENDER_AMETHYST = registerBlock("block_ender_amethyst",
             () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST)));
-
-    public static final RegistryObject<Block> BLOCK_TRADING_STATION = registerBlock("block_trading_station",
-            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL))
-    );
 
     // public static final RegistryObject<Block> BLOCK_TRADING_STATION = registerBlock("block_trading_station", TradingStation::new);
 

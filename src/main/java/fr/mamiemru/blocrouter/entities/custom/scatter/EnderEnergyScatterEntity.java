@@ -1,6 +1,7 @@
 package fr.mamiemru.blocrouter.entities.custom.scatter;
 
 import fr.mamiemru.blocrouter.blocks.custom.statesProperties.SortMode;
+import fr.mamiemru.blocrouter.config.BlockRouterConfig;
 import fr.mamiemru.blocrouter.entities.BaseEntityEnergySortMode;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.gui.menu.menus.scatter.EnderEnergyScatterMenu;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.NotNull;
@@ -57,7 +59,11 @@ public class EnderEnergyScatterEntity extends BaseEntityEnergySortMode {
     }
 
     public EnderEnergyScatterEntity(BlockPos pos, BlockState state) {
-        super(EntitiesRegistry.ENDER_ENERGY_SCATTER_ENTITY.get(), pos, state, 2048000, 18432, 16);
+        super(EntitiesRegistry.ENDER_ENERGY_SCATTER_ENTITY.get(), pos, state,
+                BlockRouterConfig.ENERGY_SCATTER_ENERGY_CAPACITY.get(),
+                BlockRouterConfig.ENERGY_SCATTER_ENERGY_MAX_TRANSFER.get(),
+                BlockRouterConfig.ENERGY_SCATTER_ENERGY_COST_PER_OPERATION.get()
+        );
     }
 
     @Override

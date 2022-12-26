@@ -19,6 +19,11 @@
   "item.block_router.item_excited_amethyst_shard": "Excited Amethyst Shard",
   "item.block_router.item_vacuum_amethyst_shard": "Lazuli Amethyst Shard",
   "item.block_router.item_filter": "Filter",
+  "item.block_router.item_piezoelectric_fuel": "Piezoelectric Fuel",
+  "item.block_router.item_piezoelectric_iron_piston": "Piezoelectric Iron Piston",
+  "item.block_router.item_piezoelectric_diamond_piston": "Piezoelectric Diamond Piston",
+  "item.block_router.item_piezoelectric_netherite_piston": "Piezoelectric Netherite Piston",
+  "item.block_router.item_piezoelectric_diamondium_piston": "Piezoelectric Diamondium Piston",
   "block.block_router.block_router": "Router",
   "block.block_router.block_ender_router": "Ender Router",
   "block.block_router.block_transfer_router": "Transfer Router",
@@ -40,5 +45,9 @@
   "block.block_router.block_retriever": "Retriever",
   "block.block_router.block_ender_retriever": "Ender Retriever",
   "block.block_router.block_ender_amethyst": "Ender Amethyst Block",
-  "block.block_router.block_mob_loot_sorter": "Mob Loots sorter"
+  "block.block_router.block_mob_loot_sorter": "Mob Loots sorter",
+  "block.block_router.block_piezoelectric_generator_base": "Piezoelectric Generator Base",
+  "block.block_router.block_piezoelectric_tube": "Piezoelectric Tube",
+  "block.block_router.block_piezoelectric_weak_piston": "Piezoelectric Low Pressure Piston",
+  "block.block_router.block_piezoelectric_heavy_piston": "Piezoelectric High Pressure Piston"
 }

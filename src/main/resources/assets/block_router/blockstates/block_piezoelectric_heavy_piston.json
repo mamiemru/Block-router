@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "piston_type=empty": { "model": "block_router:block/block_piezoelectric_heavy_piston_empty" },
+    "piston_type=iron": { "model": "block_router:block/block_piezoelectric_heavy_piston_iron" },
+    "piston_type=diamond": { "model": "block_router:block/block_piezoelectric_heavy_piston_diamond" },
+    "piston_type=netherite": { "model": "block_router:block/block_piezoelectric_heavy_piston_netherite" },
+    "piston_type=diamondium": { "model": "block_router:block/block_piezoelectric_heavy_piston_diamandium" }
+  }
+}

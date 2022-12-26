@@ -1,6 +1,6 @@
 package fr.mamiemru.blocrouter.blocks.custom.patternEncoder;
 
-import fr.mamiemru.blocrouter.blocks.BaseBlockRouterBlock;
+import fr.mamiemru.blocrouter.blocks.BaseBlockEntityRouterBlock;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.EnderPatternEncoderEntity;
 import net.minecraft.core.BlockPos;
@@ -9,7 +9,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -21,7 +20,7 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class EnderPatternEncoder extends BaseBlockRouterBlock {
+public class EnderPatternEncoder extends BaseBlockEntityRouterBlock {
 
     public EnderPatternEncoder() {
         super(Properties.of(Material.METAL));

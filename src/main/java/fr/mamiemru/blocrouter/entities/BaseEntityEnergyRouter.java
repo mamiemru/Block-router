@@ -1,5 +1,6 @@
 package fr.mamiemru.blocrouter.entities;
 
+import fr.mamiemru.blocrouter.config.BlockRouterConfig;
 import fr.mamiemru.blocrouter.items.custom.*;
 import fr.mamiemru.blocrouter.util.patterns.Pattern;
 import net.minecraft.core.BlockPos;
@@ -60,7 +61,9 @@ public abstract class BaseEntityEnergyRouter extends BaseEntityEnergy {
     }
 
     public BaseEntityEnergyRouter(BlockEntityType<?> entityType, BlockPos pos, BlockState state) {
-        super(entityType, pos, state, 64000, 1024, 32);
+        super(entityType, pos, state, BlockRouterConfig.ROUTER_ENERGY_CAPACITY.get(),
+                BlockRouterConfig.ROUTER_ENERGY_MAX_TRANSFER.get(), BlockRouterConfig.ROUTER_ENERGY_COST_PER_OPERATION.get()
+        );
     }
     protected void handleExtraction() {};
     protected void handleProcessing() {};

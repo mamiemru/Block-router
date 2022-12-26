@@ -1,6 +1,8 @@
 package fr.mamiemru.blocrouter.items;
 
 import fr.mamiemru.blocrouter.BlocRouter;
+import fr.mamiemru.blocrouter.blocks.custom.generators.PiezoelectricPiston;
+import fr.mamiemru.blocrouter.config.BlockRouterConfig;
 import fr.mamiemru.blocrouter.gui.menu.menus.ItemFilterMenu;
 import fr.mamiemru.blocrouter.items.custom.*;
 import net.minecraft.client.Minecraft;
@@ -22,16 +24,16 @@ public class ItemsRegistry {
             () -> new Item(new Item.Properties().tab(BlocRouter.RouterCreativeTab)));
 
     public static final RegistryObject<Item> ITEM_PROCESSING_UPGRADE_LOW = ITEMS_REGISTRY.register("item_processing_upgrade_low",
-            () ->  new ItemProcessingUpgrade(2)
+            () ->  new ItemProcessingUpgrade(BlockRouterConfig.ALL_MACHINES_PROCESSING_UPGRADE_LOW.getDefault())
     );
     public static final RegistryObject<Item> ITEM_PROCESSING_UPGRADE_MEDIUM = ITEMS_REGISTRY.register("item_processing_upgrade_medium",
-            () ->  new ItemProcessingUpgrade(3)
+            () ->  new ItemProcessingUpgrade(BlockRouterConfig.ALL_MACHINES_PROCESSING_UPGRADE_MEDIUM.getDefault())
     );
     public static final RegistryObject<Item> ITEM_PROCESSING_UPGRADE_HIGH = ITEMS_REGISTRY.register("item_processing_upgrade_high",
-            () ->  new ItemProcessingUpgrade(8)
+            () ->  new ItemProcessingUpgrade(BlockRouterConfig.ALL_MACHINES_PROCESSING_UPGRADE_HIGH.getDefault())
     );
     public static final RegistryObject<Item> ITEM_PROCESSING_UPGRADE_EXTRA = ITEMS_REGISTRY.register("item_processing_upgrade_extra",
-            () ->  new ItemProcessingUpgrade(96)
+            () ->  new ItemProcessingUpgrade(BlockRouterConfig.ALL_MACHINES_PROCESSING_UPGRADE_EXTRA.getDefault())
     );
     public static final RegistryObject<Item> ITEM_ROUTING_PATTERN = ITEMS_REGISTRY.register("item_routing_pattern",
             ItemRoutingPattern::new
@@ -57,6 +59,21 @@ public class ItemsRegistry {
 
     public static final RegistryObject<Item> ITEM_TELEPORTATION_SLOT = ITEMS_REGISTRY.register("item_teleportation_slot",
             ItemTeleportationSlot::new
+    );
+    public static final RegistryObject<Item> ITEM_PIEZOELECTRIC_FUEL = ITEMS_REGISTRY.register("item_piezoelectric_fuel",
+            () -> new Item(new Item.Properties().tab(BlocRouter.RouterCreativeTab))
+    );
+    public static final RegistryObject<Item> ITEM_PIEZOELECTRIC_IRON_PISTON = ITEMS_REGISTRY.register("item_piezoelectric_iron_piston",
+            () -> new ItemPiezoelectricPiston(BlockRouterConfig.PIEZOELECTRIC_GENERATOR_IRON_PISTON_STRENGTH.getDefault())
+    );
+    public static final RegistryObject<Item> ITEM_PIEZOELECTRIC_DIAMOND_PISTON = ITEMS_REGISTRY.register("item_piezoelectric_diamond_piston",
+            () -> new ItemPiezoelectricPiston(BlockRouterConfig.PIEZOELECTRIC_GENERATOR_DIAMOND_PISTON_STRENGTH.getDefault())
+    );
+    public static final RegistryObject<Item> ITEM_PIEZOELECTRIC_NETHERITE_PISTON = ITEMS_REGISTRY.register("item_piezoelectric_netherite_piston",
+            () -> new ItemPiezoelectricPiston(BlockRouterConfig.PIEZOELECTRIC_GENERATOR_NETHERITE_PISTON_STRENGTH.getDefault())
+    );
+    public static final RegistryObject<Item> ITEM_PIEZOELECTRIC_DIAMONDIUM_PISTON = ITEMS_REGISTRY.register("item_piezoelectric_diamondium_piston",
+            () -> new ItemPiezoelectricPiston(BlockRouterConfig.PIEZOELECTRIC_GENERATOR_DIAMONDIUM_PISTON_STRENGTH.getDefault())
     );
 
     // public static final RegistryObject<Item> ITEM_QUANTITY_UPGRADE = ITEMS_REGISTRY.register("item_quantity_upgrade",ItemQuantityUpgrade::new);

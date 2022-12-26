@@ -1,6 +1,7 @@
 package fr.mamiemru.blocrouter.entities.custom;
 
 
+import fr.mamiemru.blocrouter.config.BlockRouterConfig;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.entities.BaseEntityEnergyMachine;
 import fr.mamiemru.blocrouter.gui.menu.menus.MobLootSorterMenu;
@@ -48,7 +49,11 @@ public class MobLootSorterEntity extends BaseEntityEnergyMachine {
     }
 
     public MobLootSorterEntity(BlockPos pos, BlockState state) {
-        super(EntitiesRegistry.MOB_LOOT_SORTER_ENTITY.get(), pos, state, 64000, 1024, 8);
+        super(EntitiesRegistry.MOB_LOOT_SORTER_ENTITY.get(), pos, state,
+                BlockRouterConfig.OTHER_MACHINES_ENERGY_CAPACITY.get(),
+                BlockRouterConfig.OTHER_MACHINES_ENERGY_MAX_TRANSFER.get(),
+                BlockRouterConfig.OTHER_MACHINES_ENERGY_COST_PER_OPERATION.get()
+        );
     }
 
     @Override

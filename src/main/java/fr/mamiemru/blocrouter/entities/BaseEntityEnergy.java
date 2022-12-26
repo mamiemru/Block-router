@@ -2,6 +2,7 @@ package fr.mamiemru.blocrouter.entities;
 
 import fr.mamiemru.blocrouter.blocks.BaseFacingBlock;
 import fr.mamiemru.blocrouter.blocks.BaseSwitchableFacingBlock;
+import fr.mamiemru.blocrouter.config.BlockRouterConfig;
 import fr.mamiemru.blocrouter.items.custom.ItemProcessingUpgrade;
 import fr.mamiemru.blocrouter.network.ModNetworking;
 import fr.mamiemru.blocrouter.network.packet.EnergySyncS2CPacket;
@@ -33,7 +34,7 @@ public abstract class BaseEntityEnergy extends BaseEntityWithMenuProvider {
     protected int energyProcess;
     protected int energyMaxTransfer;
     protected int processTick = 0;
-    protected int processMaxTick = 96;
+    protected int processMaxTick = BlockRouterConfig.ALL_MACHINES_IDLE_TIME.getDefault();
     protected LazyOptional<EnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
     protected abstract int getSlotUpgrade();
@@ -220,7 +221,7 @@ public abstract class BaseEntityEnergy extends BaseEntityWithMenuProvider {
     protected int processMaxTickWithUpgrade() {
         ItemStack upgrade = itemStackHandler.getStackInSlot(getSlotUpgrade());
         if (upgrade != null && !upgrade.isEmpty() && upgrade.getItem() instanceof ItemProcessingUpgrade) {
-            return processMaxTick/(((ItemProcessingUpgrade)upgrade.getItem()).getEfficiency());
+            return Math.floorDiv(processMaxTick, (((ItemProcessingUpgrade)upgrade.getItem()).getEfficiency()));
         }
         return processMaxTick;
     }

@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "content_level=small": { "model": "block_router:block/block_piezoelectric_tube_small" },
+    "content_level=medium": { "model": "block_router:block/block_piezoelectric_tube_medium" },
+    "content_level=large": { "model": "block_router:block/block_piezoelectric_tube_large" },
+    "content_level=full": { "model": "block_router:block/block_piezoelectric_tube_full" },
+    "content_level=empty": { "model": "block_router:block/block_piezoelectric_tube_empty" }
+  }
+}

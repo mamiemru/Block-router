@@ -1,6 +1,6 @@
 package fr.mamiemru.blocrouter.blocks.custom.patternEncoder;
 
-import fr.mamiemru.blocrouter.blocks.BaseBlockRouterBlock;
+import fr.mamiemru.blocrouter.blocks.BaseBlockEntityRouterBlock;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.PatternEncoderEntity;
 import net.minecraft.core.BlockPos;
@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PatternEncoder extends BaseBlockRouterBlock {
+public class PatternEncoder extends BaseBlockEntityRouterBlock {
 
     public PatternEncoder() {
         super(BlockBehaviour.Properties.of(Material.METAL));

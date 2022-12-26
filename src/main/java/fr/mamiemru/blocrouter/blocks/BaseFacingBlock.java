@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-public abstract class BaseFacingBlock extends BaseBlockRouterBlock {
+public abstract class BaseFacingBlock extends BaseBlockEntityRouterBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     protected BaseFacingBlock(Properties pProperties) {

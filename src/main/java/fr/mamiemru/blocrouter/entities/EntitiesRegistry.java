@@ -3,26 +3,18 @@ package fr.mamiemru.blocrouter.entities;
 import fr.mamiemru.blocrouter.BlocRouter;
 import fr.mamiemru.blocrouter.blocks.BlocksRegistry;
 import fr.mamiemru.blocrouter.entities.custom.*;
+import fr.mamiemru.blocrouter.entities.custom.generators.PiezoelectricGeneratorBaseEntity;
+import fr.mamiemru.blocrouter.entities.custom.generators.PiezoelectricHeavyPistonEntity;
 import fr.mamiemru.blocrouter.entities.custom.patternEncoder.*;
 import fr.mamiemru.blocrouter.entities.custom.routers.*;
 import fr.mamiemru.blocrouter.entities.custom.scatter.EnderEnergyScatterEntity;
 import fr.mamiemru.blocrouter.entities.custom.scatter.EnderScatterEntity;
 import fr.mamiemru.blocrouter.entities.custom.scatter.ScatterEntity;
-import fr.mamiemru.blocrouter.items.custom.ItemNormalRoutingPattern;
-import fr.mamiemru.blocrouter.util.patterns.NormalRoutingPattern;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.NotNull;
 
 public class EntitiesRegistry {
 
@@ -109,6 +101,14 @@ public class EntitiesRegistry {
             BLOCK_ENTITIES.register("mob_loot_sorter_entity", () ->
                     BlockEntityType.Builder.of(MobLootSorterEntity::new,
                             BlocksRegistry.BLOCK_MOB_LOOT_SORTER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<PiezoelectricGeneratorBaseEntity>> PIEZOELECTRIC_GENERATOR_ENTITY =
+            BLOCK_ENTITIES.register("piezoelectric_generator_base_entity", () ->
+                    BlockEntityType.Builder.of(PiezoelectricGeneratorBaseEntity::new,
+                            BlocksRegistry.BLOCK_PIEZOELECTRIC_GENERATOR_BASE.get()).build(null));
+    public static final RegistryObject<BlockEntityType<PiezoelectricHeavyPistonEntity>> PIEZOELECTRIC_HEAVY_PISTON_ENTITY =
+            BLOCK_ENTITIES.register("piezoelectric_heavy_piston_entity", () ->
+                    BlockEntityType.Builder.of(PiezoelectricHeavyPistonEntity::new,
+                            BlocksRegistry.BLOCK_PIEZOELECTRIC_HEAVY_PISTON.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

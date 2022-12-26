@@ -3,6 +3,8 @@ package fr.mamiemru.blocrouter.gui.menu;
 import fr.mamiemru.blocrouter.BlocRouter;
 import fr.mamiemru.blocrouter.entities.Container.ContainerListData;
 import fr.mamiemru.blocrouter.gui.menu.menus.*;
+import fr.mamiemru.blocrouter.gui.menu.menus.generators.PiezoelectricGeneratorBaseMenu;
+import fr.mamiemru.blocrouter.gui.menu.menus.generators.PiezoelectricHeavyPistonMenu;
 import fr.mamiemru.blocrouter.gui.menu.menus.patternEncoder.*;
 import fr.mamiemru.blocrouter.gui.menu.menus.routers.*;
 import fr.mamiemru.blocrouter.gui.menu.menus.scatter.EnderEnergyScatterMenu;
@@ -62,6 +64,10 @@ public class MenuTypes {
             registerMenuType(EnderEnergyScatterMenu::new, "ender_energy_scatter_menu");
     public static final RegistryObject<MenuType<MobLootSorterMenu>> MOB_LOOT_SORTER_MENU =
             registerMenuType(MobLootSorterMenu::new, "mob_loot_sorter_menu");
+    public static final RegistryObject<MenuType<PiezoelectricGeneratorBaseMenu>> PIEZOELECTRIC_GENERATOR_BASE_MENU =
+            registerMenuType(PiezoelectricGeneratorBaseMenu::new, "piezoelectric_generator_base_menu");
+    public static final RegistryObject<MenuType<PiezoelectricHeavyPistonMenu>> PIEZOELECTRIC_HEAVY_PISTON_MENU =
+            registerMenuType(PiezoelectricHeavyPistonMenu::new, "piezoelectric_heavy_piston_menu");
 
     public static final RegistryObject<MenuType<ItemFilterMenu>> ITEM_FILTER_MENU =
             MENUS.register("item_filter_menu", () -> IForgeMenuType.create(((windowId, inv, data) -> new ItemFilterMenu(windowId, inv, Minecraft.getInstance().player))));

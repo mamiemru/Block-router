@@ -1,5 +1,6 @@
 package fr.mamiemru.blocrouter.entities.custom.scatter;
 
+import fr.mamiemru.blocrouter.config.BlockRouterConfig;
 import fr.mamiemru.blocrouter.entities.BaseEntityEnergyMachine;
 import fr.mamiemru.blocrouter.entities.EntitiesRegistry;
 import fr.mamiemru.blocrouter.gui.menu.menus.scatter.ScatterMenu;
@@ -43,7 +44,11 @@ public class ScatterEntity extends BaseEntityEnergyMachine {
     }
 
     public ScatterEntity(BlockPos pos, BlockState state) {
-        super(EntitiesRegistry.SCATTER_ENTITY.get(), pos, state, 32000, 1024, 32);
+        super(EntitiesRegistry.SCATTER_ENTITY.get(), pos, state,
+                BlockRouterConfig.SCATTER_RETRIEVER_ENERGY_CAPACITY.get(),
+                BlockRouterConfig.SCATTER_RETRIEVER_ENERGY_MAX_TRANSFER.get(),
+                BlockRouterConfig.SCATTER_RETRIEVER_ENERGY_COST_PER_OPERATION.get()
+        );
     }
 
     @Override

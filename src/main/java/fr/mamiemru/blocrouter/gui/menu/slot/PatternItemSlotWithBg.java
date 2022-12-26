@@ -1,7 +1,6 @@
 package fr.mamiemru.blocrouter.gui.menu.slot;
 
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
 
 public class PatternItemSlotWithBg extends PatternItemSlot {
 
@@ -11,4 +10,5 @@ public class PatternItemSlotWithBg extends PatternItemSlot {
         super(container, index, xPosition, yPosition);
         this.index = index;
     }
+
 }
